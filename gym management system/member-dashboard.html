@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Member Dashboard - Revive Fitness</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            background-image:
+
+                linear-gradient(
+                    rgba(0,0,0,0.65),
+                    rgba(0,0,0,0.65)
+                ),
+
+                url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=80");
+
+            background-size: cover;
+
+            background-position: center;
+
+            background-attachment: fixed;
+
+            color: #222;
+
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+
+            background: rgba(20,20,20,0.95);
+
+            color: white;
+
+            padding: 18px 40px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+        }
+
+
+        .logo {
+
+            font-size: 25px;
+
+            font-weight: bold;
+
+        }
+
+
+        .header-buttons {
+
+            display: flex;
+
+            gap: 10px;
+
+            align-items: center;
+
+        }
+
+
+        
+        .logout-btn {
+
+            padding: 9px 18px;
+
+            border: none;
+
+            border-radius: 6px;
+
+            background: white;
+
+            color: #222;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            text-decoration: none;
+
+        }
+
+
+        
+        .logout-btn:hover {
+
+            background: #ddd;
+
+        }
+
+
+       
+
+
+        
+
+
+        /* =========================
+           WELCOME
+        ========================= */
+
+        .welcome {
+
+            color: white;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .welcome h1 {
+
+            font-size: 34px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .welcome p {
+
+            font-size: 17px;
+
+            color: #ddd;
+
+        }
+
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        .member-navigation {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .member-nav-btn {
+
+            background: rgba(255,255,255,0.96);
+
+            padding: 18px;
+
+            border-radius: 10px;
+
+            text-align: center;
+
+            text-decoration: none;
+
+            color: #222;
+
+            font-weight: bold;
+
+            box-shadow:
+                0 8px 20px
+                rgba(0,0,0,0.25);
+
+        }
+
+
+        .member-nav-btn:hover {
+
+            background: #eaeaea;
+
+        }
+
+
+        /* =========================
+           CARDS
+        ========================= */
+
+        .cards {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap: 20px;
+
+        }
+
+
+        .card {
+
+            background:
+                rgba(255,255,255,0.96);
+
+            padding: 25px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0,0,0,0.3);
+
+        }
+
+
+        .card h3 {
+
+            color: #777;
+
+            font-size: 15px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .card p {
+
+            font-size: 22px;
+
+            font-weight: bold;
+
+        }
+
+
+        .active {
+
+            color: green !important;
+
+        }
+
+
+        .expired {
+
+            color: red !important;
+
+        }
+
+
+        /* =========================
+           DETAILS
+        ========================= */
+
+        .details {
+
+            margin-top: 25px;
+
+            background:
+                rgba(255,255,255,0.96);
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0,0,0,0.3);
+
+        }
+
+
+        .details h2 {
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .details-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2,1fr);
+
+            gap: 18px;
+
+        }
+
+
+        .detail {
+
+            padding: 15px;
+
+            background: #f5f5f5;
+
+            border-radius: 8px;
+
+        }
+
+
+        .detail span {
+
+            display: block;
+
+            color: #777;
+
+            font-size: 14px;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .detail strong {
+
+            font-size: 17px;
+
+        }
+
+
+        /* =========================
+           WORKOUT BUTTON
+        ========================= */
+
+        .workout-btn {
+
+            display: inline-block;
+
+            margin-top: 10px;
+
+            padding: 9px 16px;
+
+            background: #222;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 7px;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+        }
+
+
+        .workout-btn:hover {
+
+            background: #444;
+
+        }
+
+
+        /* =========================
+           TRAINER
+        ========================= */
+
+        .trainer-card {
+
+            margin-top: 25px;
+
+            background:
+                rgba(255,255,255,0.96);
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0,0,0,0.3);
+
+        }
+
+
+        .trainer-card h2 {
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .trainer-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2,1fr);
+
+            gap: 18px;
+
+        }
+
+
+        .trainer-info {
+
+            background: #f5f5f5;
+
+            padding: 18px;
+
+            border-radius: 8px;
+
+        }
+
+
+        .trainer-info span {
+
+            display: block;
+
+            color: #777;
+
+            font-size: 14px;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        .trainer-info strong {
+
+            font-size: 18px;
+
+        }
+
+
+        /* =========================
+           ATTENDANCE
+        ========================= */
+
+        .attendance {
+
+            margin-top: 25px;
+
+            background:
+                rgba(255,255,255,0.96);
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0,0,0,0.3);
+
+        }
+
+
+        .attendance h2 {
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .attendance-summary {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap: 15px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .attendance-box {
+
+            background: #f5f5f5;
+
+            padding: 20px;
+
+            border-radius: 8px;
+
+            text-align: center;
+
+        }
+
+
+        .attendance-box span {
+
+            display: block;
+
+            color: #777;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .attendance-box strong {
+
+            font-size: 28px;
+
+        }
+
+
+        .green {
+
+            color: green;
+
+        }
+
+
+        .red {
+
+            color: red;
+
+        }
+
+
+        /* =========================
+           TABLE
+        ========================= */
+
+        .attendance-table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+        }
+
+
+        .attendance-table th,
+        .attendance-table td {
+
+            border: 1px solid #ddd;
+
+            padding: 12px;
+
+            text-align: center;
+
+        }
+
+
+        .attendance-table th {
+
+            background: #222;
+
+            color: white;
+
+        }
+
+
+        .present-status {
+
+            color: green;
+
+            font-weight: bold;
+
+        }
+
+
+        .absent-status {
+
+            color: red;
+
+            font-weight: bold;
+
+        }
+
+
+        .no-record {
+
+            color: #777;
+
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media(max-width:800px) {
+
+            header {
+
+                padding: 15px 20px;
+
+            }
+
+
+            .logo {
+
+                font-size: 20px;
+
+            }
+
+
+            .header-buttons {
+
+                gap: 5px;
+
+            }
+
+
+            .dashboard-btn,
+            .logout-btn {
+
+                padding: 8px 10px;
+
+                font-size: 12px;
+
+            }
+
+
+            .cards {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .details-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .trainer-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .attendance-summary {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .member-navigation {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .welcome h1 {
+
+                font-size: 27px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+
+    <div class="logo">
+
+        REVIVE FITNESS
+
+    </div>
+
+
+    <div class="header-buttons">
+
+
+
+
+        <button
+            class="logout-btn"
+            onclick="logout()">
+
+            Logout
+
+        </button>
+
+
+    </div>
+
+
+</header>
+
+
+
+<!-- =========================
+     MAIN DASHBOARD
+========================= -->
+
+<main class="dashboard">
+
+
+    <!-- WELCOME -->
+
+    <div class="welcome">
+
+        <h1>
+
+            Welcome,
+            <span id="memberName">
+                Member
+            </span>
+
+            👋
+
+        </h1>
+
+
+        <p>
+
+            Here is your fitness
+            membership information.
+
+        </p>
+
+    </div>
+
+
+
+    <!-- =========================
+         MEMBER NAVIGATION
+    ========================= -->
+
+    <div class="member-navigation">
+
+        <a
+            href="member-progress.html"
+            class="member-nav-btn">
+
+            📊 My Progress
+
+        </a>
+
+
+        <a
+            href="member-workout.html"
+            class="member-nav-btn">
+
+            💪 My Workout
+
+        </a>
+
+
+    </div>
+
+
+
+    <!-- =========================
+         MEMBERSHIP CARDS
+    ========================= -->
+
+    <div class="cards">
+
+
+        <!-- PLAN -->
+
+        <div class="card">
+
+            <h3>
+                Membership Plan
+            </h3>
+
+
+            <p id="memberPlan">
+
+                -
+
+            </p>
+
+        </div>
+
+
+
+        <!-- STATUS -->
+
+        <div class="card">
+
+            <h3>
+                Membership Status
+            </h3>
+
+
+            <p id="memberStatus">
+
+                -
+
+            </p>
+
+        </div>
+
+
+
+        <!-- EXPIRY -->
+
+        <div class="card">
+
+            <h3>
+                Expiry Date
+            </h3>
+
+
+            <p id="memberExpiry">
+
+                -
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =========================
+         MEMBER DETAILS
+    ========================= -->
+
+    <div class="details">
+
+
+        <h2>
+            My Details
+        </h2>
+
+
+        <div class="details-grid">
+
+
+            <div class="detail">
+
+                <span>
+                    Full Name
+                </span>
+
+                <strong id="detailName">
+                    -
+                </strong>
+
+            </div>
+
+
+
+            <div class="detail">
+
+                <span>
+                    Email
+                </span>
+
+                <strong id="detailEmail">
+                    -
+                </strong>
+
+            </div>
+
+
+
+            <div class="detail">
+
+                <span>
+                    Phone
+                </span>
+
+                <strong id="detailPhone">
+                    -
+                </strong>
+
+            </div>
+
+
+
+            <div class="detail">
+
+                <span>
+                    Age
+                </span>
+
+                <strong id="detailAge">
+                    -
+                </strong>
+
+            </div>
+
+
+
+            <div class="detail">
+
+                <span>
+                    Gender
+                </span>
+
+                <strong id="detailGender">
+                    -
+                </strong>
+
+            </div>
+
+
+
+            <div class="detail">
+
+                <span>
+                    Weight
+                </span>
+
+                <strong id="detailWeight">
+                    -
+                </strong>
+
+            </div>
+
+
+
+            <div class="detail">
+
+                <span>
+                    Height
+                </span>
+
+                <strong id="detailHeight">
+                    -
+                </strong>
+
+            </div>
+
+
+
+            <div class="detail">
+
+                <span>
+                    Membership Start
+                </span>
+
+                <strong id="detailStart">
+                    -
+                </strong>
+
+            </div>
+
+
+
+            <div class="detail">
+
+                <span>
+                    Membership Expiry
+                </span>
+
+                <strong id="detailExpiry">
+                    -
+                </strong>
+
+            </div>
+
+
+
+            <div class="detail">
+
+                <span>
+                    Username
+                </span>
+
+                <strong id="detailUsername">
+                    -
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =========================
+         ASSIGNED TRAINER
+    ========================= -->
+
+    <div class="trainer-card">
+
+
+        <h2>
+            My Trainer 🏋️
+        </h2>
+
+
+        <div class="trainer-grid">
+
+
+            <div class="trainer-info">
+
+                <span>
+                    Trainer Name
+                </span>
+
+                <strong id="trainerName">
+
+                    Not Assigned
+
+                </strong>
+
+            </div>
+
+
+
+            <div class="trainer-info">
+
+                <span>
+                    Specialization
+                </span>
+
+                <strong id="trainerSpecialization">
+
+                    Not Assigned
+
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =========================
+         ATTENDANCE
+    ========================= -->
+
+    <div class="attendance">
+
+
+        <h2>
+            My Attendance
+        </h2>
+
+
+        <div class="attendance-summary">
+
+
+            <div class="attendance-box">
+
+                <span>
+                    Present
+                </span>
+
+                <strong
+                    id="presentCount"
+                    class="green">
+
+                    0
+
+                </strong>
+
+            </div>
+
+
+
+            <div class="attendance-box">
+
+                <span>
+                    Absent
+                </span>
+
+                <strong
+                    id="absentCount"
+                    class="red">
+
+                    0
+
+                </strong>
+
+            </div>
+
+
+
+            <div class="attendance-box">
+
+                <span>
+                    Attendance
+                </span>
+
+                <strong id="attendancePercentage">
+
+                    0%
+
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+
+        <table class="attendance-table">
+
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Date
+                    </th>
+
+                    <th>
+                        Status
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="attendanceTable">
+
+            </tbody>
+
+
+        </table>
+
+
+    </div>
+
+
+</main>
+
+
+
+<script>
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        /* =================================
+           GET LOGGED-IN MEMBER
+        ================================= */
+
+        const savedMember =
+            localStorage.getItem(
+                "loggedInMember"
+            );
+
+
+        if (!savedMember) {
+
+            window.location.href =
+                "member-login.html";
+
+            return;
+
+        }
+
+
+        const loggedMember =
+            JSON.parse(
+                savedMember
+            );
+
+
+        /* =================================
+           LOAD CURRENT MEMBERS DATABASE
+        ================================= */
+
+        const members =
+            JSON.parse(
+                localStorage.getItem(
+                    "members"
+                )
+            ) || [];
+
+
+        /*
+         * Find the latest version of
+         * the logged-in member.
+         */
+
+        const member =
+            members.find(
+                function (m) {
+
+                    return String(m.id) ===
+                           String(loggedMember.id);
+
+                }
+            ) || loggedMember;
+
+
+
+        /* =================================
+           BASIC INFORMATION
+        ================================= */
+
+        document.getElementById(
+            "memberName"
+        ).textContent =
+            member.name || "Member";
+
+
+        document.getElementById(
+            "memberPlan"
+        ).textContent =
+            member.plan || "-";
+
+
+        document.getElementById(
+            "memberExpiry"
+        ).textContent =
+            member.expiryDate || "-";
+
+
+
+        /* =================================
+           MEMBERSHIP STATUS
+        ================================= */
+
+        const statusElement =
+            document.getElementById(
+                "memberStatus"
+            );
+
+
+        statusElement.classList.remove(
+            "active",
+            "expired"
+        );
+
+
+        if (member.expiryDate) {
+
+
+            const today =
+                new Date();
+
+
+            today.setHours(
+                0,
+                0,
+                0,
+                0
+            );
+
+
+            const expiry =
+                new Date(
+                    member.expiryDate
+                );
+
+
+            expiry.setHours(
+                0,
+                0,
+                0,
+                0
+            );
+
+
+            if (expiry >= today) {
+
+                statusElement.textContent =
+                    "Active";
+
+
+                statusElement.classList.add(
+                    "active"
+                );
+
+            }
+
+            else {
+
+                statusElement.textContent =
+                    "Expired";
+
+
+                statusElement.classList.add(
+                    "expired"
+                );
+
+            }
+
+        }
+
+        else {
+
+            statusElement.textContent =
+                "-";
+
+        }
+
+
+
+        /* =================================
+           MEMBER DETAILS
+        ================================= */
+
+        document.getElementById(
+            "detailName"
+        ).textContent =
+            member.name || "-";
+
+
+        document.getElementById(
+            "detailEmail"
+        ).textContent =
+            member.email || "-";
+
+
+        document.getElementById(
+            "detailPhone"
+        ).textContent =
+            member.phone || "-";
+
+
+        document.getElementById(
+            "detailAge"
+        ).textContent =
+            member.age || "-";
+
+
+        document.getElementById(
+            "detailGender"
+        ).textContent =
+            member.gender || "-";
+
+
+        document.getElementById(
+            "detailWeight"
+        ).textContent =
+            member.weight
+                ? member.weight + " kg"
+                : "-";
+
+
+        document.getElementById(
+            "detailHeight"
+        ).textContent =
+            member.height
+                ? member.height + " cm"
+                : "-";
+
+
+        document.getElementById(
+            "detailStart"
+        ).textContent =
+            member.startDate || "-";
+
+
+        document.getElementById(
+            "detailExpiry"
+        ).textContent =
+            member.expiryDate || "-";
+
+
+        document.getElementById(
+            "detailUsername"
+        ).textContent =
+            member.username || "-";
+
+
+
+        /* =================================
+           ASSIGNED TRAINER
+        ================================= */
+
+        document.getElementById(
+            "trainerName"
+        ).textContent =
+            member.trainer ||
+            "Not Assigned";
+
+
+        document.getElementById(
+            "trainerSpecialization"
+        ).textContent =
+            member.trainerSpecialization ||
+            "Not Assigned";
+
+
+
+        /* =================================
+           ATTENDANCE
+        ================================= */
+
+        const attendance =
+            JSON.parse(
+                localStorage.getItem(
+                    "attendance"
+                )
+            ) || [];
+
+
+        const loggedName =
+            String(
+                member.name || ""
+            )
+            .trim()
+            .toLowerCase();
+
+
+        const myAttendance =
+            attendance.filter(
+                function (record) {
+
+
+                    const recordName =
+                        String(
+                            record.member || ""
+                        )
+                        .trim()
+                        .toLowerCase();
+
+
+                    return (
+                        recordName ===
+                        loggedName
+                    );
+
+                }
+            );
+
+
+        let present = 0;
+
+        let absent = 0;
+
+
+        myAttendance.forEach(
+            function (record) {
+
+
+                const recordStatus =
+                    String(
+                        record.status || ""
+                    )
+                    .trim()
+                    .toLowerCase();
+
+
+                if (
+                    recordStatus ===
+                    "present"
+                ) {
+
+                    present++;
+
+                }
+
+
+                if (
+                    recordStatus ===
+                    "absent"
+                ) {
+
+                    absent++;
+
+                }
+
+            }
+        );
+
+
+
+        /* =================================
+           ATTENDANCE COUNTS
+        ================================= */
+
+        document.getElementById(
+            "presentCount"
+        ).textContent =
+            present;
+
+
+        document.getElementById(
+            "absentCount"
+        ).textContent =
+            absent;
+
+
+
+        /* =================================
+           ATTENDANCE PERCENTAGE
+        ================================= */
+
+        const total =
+            present + absent;
+
+
+        let percentage = 0;
+
+
+        if (total > 0) {
+
+            percentage =
+                Math.round(
+                    (present / total) * 100
+                );
+
+        }
+
+
+        document.getElementById(
+            "attendancePercentage"
+        ).textContent =
+            percentage + "%";
+
+
+
+        /* =================================
+           ATTENDANCE HISTORY
+        ================================= */
+
+        const table =
+            document.getElementById(
+                "attendanceTable"
+            );
+
+
+        table.innerHTML = "";
+
+
+        if (
+            myAttendance.length === 0
+        ) {
+
+
+            table.innerHTML = `
+
+                <tr>
+
+                    <td
+                        colspan="2"
+                        class="no-record">
+
+                        No attendance records yet.
+
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+
+        else {
+
+
+            myAttendance
+                .slice()
+                .reverse()
+                .forEach(
+                    function (record) {
+
+
+                        const row =
+                            document.createElement(
+                                "tr"
+                            );
+
+
+                        const dateCell =
+                            document.createElement(
+                                "td"
+                            );
+
+
+                        const statusCell =
+                            document.createElement(
+                                "td"
+                            );
+
+
+                        dateCell.textContent =
+                            record.date || "-";
+
+
+                        statusCell.textContent =
+                            record.status || "-";
+
+
+                        if (
+                            String(
+                                record.status || ""
+                            )
+                            .toLowerCase() ===
+                            "present"
+                        ) {
+
+                            statusCell.className =
+                                "present-status";
+
+                        }
+
+                        else {
+
+                            statusCell.className =
+                                "absent-status";
+
+                        }
+
+
+                        row.appendChild(
+                            dateCell
+                        );
+
+
+                        row.appendChild(
+                            statusCell
+                        );
+
+
+                        table.appendChild(
+                            row
+                        );
+
+                    }
+                );
+
+        }
+
+    });
+
+
+
+/* =================================
+   LOGOUT
+================================= */
+
+function logout() {
+
+
+    localStorage.removeItem(
+        "loggedInMember"
+    );
+
+
+    window.location.href =
+        "member-login.html";
+
+}
+
+</script>
+
+
+</body>
+
+</html>

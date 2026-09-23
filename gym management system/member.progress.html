@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Progress - Revive Fitness</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                linear-gradient(
+                    rgba(0,0,0,0.7),
+                    rgba(0,0,0,0.7)
+                ),
+                url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=80");
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #222;
+        }
+
+        /* HEADER */
+
+        header {
+            background: rgba(20,20,20,0.96);
+            color: white;
+            padding: 18px 40px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .header-btn {
+            padding: 9px 16px;
+            border: none;
+            border-radius: 6px;
+            background: white;
+            color: #222;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .header-btn:hover {
+            background: #ddd;
+        }
+
+        /* MAIN */
+
+        .container {
+            width: 1100px;
+            max-width: 94%;
+            margin: 40px auto;
+        }
+
+        .welcome {
+            color: white;
+            margin-bottom: 25px;
+        }
+
+        .welcome h1 {
+            font-size: 34px;
+            margin-bottom: 8px;
+        }
+
+        .welcome p {
+            color: #ddd;
+            font-size: 17px;
+        }
+
+        /* MEMBER INFO */
+
+        .member-info {
+            background: rgba(255,255,255,0.96);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .member-info h2 {
+            margin-bottom: 15px;
+        }
+
+        .member-name {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* PROGRESS CARDS */
+
+        .progress-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .progress-card {
+            background: rgba(255,255,255,0.96);
+            padding: 25px;
+            border-radius: 12px;
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .progress-card h3 {
+            color: #777;
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+
+        .progress-card .value {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .change {
+            margin-top: 8px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .positive {
+            color: green;
+        }
+
+        .negative {
+            color: red;
+        }
+
+        .neutral {
+            color: #777;
+        }
+
+        /* PROGRESS SECTION */
+
+        .progress-section {
+            margin-top: 25px;
+
+            background: rgba(255,255,255,0.96);
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .progress-section h2 {
+            margin-bottom: 25px;
+        }
+
+        /* PROGRESS BAR */
+
+        .bar-container {
+            margin-bottom: 25px;
+        }
+
+        .bar-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .bar {
+            width: 100%;
+            height: 15px;
+            background: #ddd;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            width: 0%;
+            background: #222;
+            border-radius: 20px;
+            transition: width 0.5s;
+        }
+
+        /* HISTORY */
+
+        .history {
+            margin-top: 25px;
+        }
+
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .history-table th,
+        .history-table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .history-table th {
+            background: #222;
+            color: white;
+        }
+
+        .no-data {
+            text-align: center;
+            color: #777;
+            padding: 20px;
+        }
+
+        /* MOBILE */
+
+        @media(max-width: 800px) {
+
+            header {
+                padding: 15px 20px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .header-buttons {
+                flex-direction: column;
+            }
+
+            .progress-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .welcome h1 {
+                font-size: 27px;
+            }
+
+            .history-table {
+                font-size: 13px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="logo">
+        REVIVE FITNESS
+    </div>
+
+    <div class="header-buttons">
+
+        <a href="member-dashboard.html"
+           class="header-btn">
+
+            🏠 Dashboard
+
+        </a>
+
+        <button
+            class="header-btn"
+            onclick="logout()">
+
+            Logout
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="container">
+
+
+    <!-- WELCOME -->
+
+    <div class="welcome">
+
+        <h1>
+            My Progress 📊
+        </h1>
+
+        <p>
+            Track your fitness progress and improvements.
+        </p>
+
+    </div>
+
+
+
+    <!-- MEMBER INFORMATION -->
+
+    <section class="member-info">
+
+        <h2>
+            Member
+        </h2>
+
+        <div
+            id="memberName"
+            class="member-name">
+
+            Loading...
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= PROGRESS CARDS ================= -->
+
+    <section class="progress-grid">
+
+
+        <!-- STARTING WEIGHT -->
+
+        <div class="progress-card">
+
+            <h3>
+                Starting Weight
+            </h3>
+
+            <div
+                id="startingWeight"
+                class="value">
+
+                -
+
+            </div>
+
+        </div>
+
+
+
+        <!-- CURRENT WEIGHT -->
+
+        <div class="progress-card">
+
+            <h3>
+                Current Weight
+            </h3>
+
+            <div
+                id="currentWeight"
+                class="value">
+
+                -
+
+            </div>
+
+        </div>
+
+
+
+        <!-- WEIGHT CHANGE -->
+
+        <div class="progress-card">
+
+            <h3>
+                Weight Change
+            </h3>
+
+            <div
+                id="weightChange"
+                class="value">
+
+                -
+
+            </div>
+
+            <div
+                id="weightMessage"
+                class="change neutral">
+
+                -
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ================= MORE DETAILS ================= -->
+
+    <section class="progress-section">
+
+        <h2>
+            Fitness Progress
+        </h2>
+
+
+        <!-- WEIGHT PROGRESS -->
+
+        <div class="bar-container">
+
+            <div class="bar-label">
+
+                <span>
+                    Weight Progress
+                </span>
+
+                <span id="weightPercentage">
+                    0%
+                </span>
+
+            </div>
+
+
+            <div class="bar">
+
+                <div
+                    id="weightBar"
+                    class="bar-fill">
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- HEIGHT -->
+
+        <div class="bar-container">
+
+            <div class="bar-label">
+
+                <span>
+                    Current Height
+                </span>
+
+                <span id="heightValue">
+                    -
+                </span>
+
+            </div>
+
+
+            <div class="bar">
+
+                <div
+                    id="heightBar"
+                    class="bar-fill">
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ================= PROGRESS HISTORY ================= -->
+
+    <section class="progress-section history">
+
+        <h2>
+            Progress History
+        </h2>
+
+
+        <table class="history-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Date
+                    </th>
+
+                    <th>
+                        Weight
+                    </th>
+
+                    <th>
+                        Height
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="historyTable">
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+
+</main>
+
+
+
+<script>
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        /* =================================
+           GET LOGGED-IN MEMBER
+        ================================= */
+
+        const savedMember =
+            localStorage.getItem(
+                "loggedInMember"
+            );
+
+
+        if (!savedMember) {
+
+            window.location.href =
+                "member-login.html";
+
+            return;
+
+        }
+
+
+        const loggedMember =
+            JSON.parse(
+                savedMember
+            );
+
+
+        /* =================================
+           LOAD LATEST MEMBERS DATA
+        ================================= */
+
+        const members =
+            JSON.parse(
+                localStorage.getItem(
+                    "members"
+                )
+            ) || [];
+
+
+        /*
+         * Find the same member inside
+         * the main members database.
+         */
+
+        const member =
+            members.find(
+                function (m) {
+
+                    return String(m.id) ===
+                           String(loggedMember.id);
+
+                }
+            ) || loggedMember;
+
+
+
+        /* =================================
+           MEMBER NAME
+        ================================= */
+
+        document.getElementById(
+            "memberName"
+        ).textContent =
+            member.name || "Member";
+
+
+
+        /* =================================
+           STARTING WEIGHT
+        ================================= */
+
+        const startingWeight =
+            Number(
+                member.startingWeight ||
+                member.weight ||
+                0
+            );
+
+
+        /* =================================
+           CURRENT WEIGHT
+        ================================= */
+
+        const currentWeight =
+            Number(
+                member.weight ||
+                0
+            );
+
+
+        /* =================================
+           HEIGHT
+        ================================= */
+
+        const currentHeight =
+            Number(
+                member.height ||
+                member.startingHeight ||
+                0
+            );
+
+
+
+        document.getElementById(
+            "startingWeight"
+        ).textContent =
+            startingWeight > 0
+                ? startingWeight + " kg"
+                : "-";
+
+
+        document.getElementById(
+            "currentWeight"
+        ).textContent =
+            currentWeight > 0
+                ? currentWeight + " kg"
+                : "-";
+
+
+        document.getElementById(
+            "heightValue"
+        ).textContent =
+            currentHeight > 0
+                ? currentHeight + " cm"
+                : "-";
+
+
+
+        /* =================================
+           WEIGHT CHANGE
+        ================================= */
+
+        if (
+            startingWeight > 0 &&
+            currentWeight > 0
+        ) {
+
+
+            const difference =
+                currentWeight -
+                startingWeight;
+
+
+            document.getElementById(
+                "weightChange"
+            ).textContent =
+                (difference > 0 ? "+" : "") +
+                difference.toFixed(1) +
+                " kg";
+
+
+            const message =
+                document.getElementById(
+                    "weightMessage"
+                );
+
+
+            if (difference < 0) {
+
+                message.textContent =
+                    "Weight decreased";
+
+                message.className =
+                    "change positive";
+
+            }
+
+            else if (difference > 0) {
+
+                message.textContent =
+                    "Weight increased";
+
+                message.className =
+                    "change negative";
+
+            }
+
+            else {
+
+                message.textContent =
+                    "No change";
+
+                message.className =
+                    "change neutral";
+
+            }
+
+
+        } else {
+
+            document.getElementById(
+                "weightChange"
+            ).textContent =
+                "-";
+
+        }
+
+
+
+        /* =================================
+           WEIGHT PROGRESS BAR
+        ================================= */
+
+        let weightPercentage = 0;
+
+
+        if (
+            startingWeight > 0 &&
+            currentWeight > 0
+        ) {
+
+            weightPercentage =
+                Math.round(
+                    (
+                        currentWeight /
+                        startingWeight
+                    ) * 100
+                );
+
+
+            /*
+             * Keep the bar between
+             * 0 and 100.
+             */
+
+            weightPercentage =
+                Math.max(
+                    0,
+                    Math.min(
+                        100,
+                        weightPercentage
+                    )
+                );
+
+        }
+
+
+        document.getElementById(
+            "weightPercentage"
+        ).textContent =
+            weightPercentage + "%";
+
+
+        document.getElementById(
+            "weightBar"
+        ).style.width =
+            weightPercentage + "%";
+
+
+
+        /* =================================
+           HEIGHT BAR
+        ================================= */
+
+        let heightPercentage = 0;
+
+
+        if (currentHeight > 0) {
+
+            /*
+             * 200 cm is used only as
+             * a visual reference.
+             */
+
+            heightPercentage =
+                Math.round(
+                    (
+                        currentHeight /
+                        200
+                    ) * 100
+                );
+
+
+            heightPercentage =
+                Math.max(
+                    0,
+                    Math.min(
+                        100,
+                        heightPercentage
+                    )
+                );
+
+        }
+
+
+        document.getElementById(
+            "heightBar"
+        ).style.width =
+            heightPercentage + "%";
+
+
+
+        /* =================================
+           PROGRESS HISTORY
+        ================================= */
+
+        const historyTable =
+            document.getElementById(
+                "historyTable"
+            );
+
+
+        historyTable.innerHTML = "";
+
+
+        let progressHistory =
+            member.progressHistory || [];
+
+
+        /*
+         * If there is no history but
+         * starting data exists, show
+         * the starting measurement.
+         */
+
+        if (
+            progressHistory.length === 0 &&
+            startingWeight > 0
+        ) {
+
+            progressHistory = [
+
+                {
+
+                    date:
+                        member.startDate ||
+                        "-",
+
+                    weight:
+                        startingWeight,
+
+                    height:
+                        member.startingHeight ||
+                        currentHeight
+
+                }
+
+            ];
+
+        }
+
+
+        if (
+            progressHistory.length === 0
+        ) {
+
+            historyTable.innerHTML = `
+
+                <tr>
+
+                    <td
+                        colspan="3"
+                        class="no-data">
+
+                        No progress records yet.
+
+                    </td>
+
+                </tr>
+
+            `;
+
+            return;
+
+        }
+
+
+        progressHistory
+            .slice()
+            .reverse()
+            .forEach(
+                function (record) {
+
+
+                    const row =
+                        document.createElement(
+                            "tr"
+                        );
+
+
+                    row.innerHTML = `
+
+                        <td>
+                            ${record.date || "-"}
+                        </td>
+
+                        <td>
+                            ${
+                                record.weight
+                                    ? record.weight + " kg"
+                                    : "-"
+                            }
+                        </td>
+
+                        <td>
+                            ${
+                                record.height
+                                    ? record.height + " cm"
+                                    : "-"
+                            }
+                        </td>
+
+                    `;
+
+
+                    historyTable.appendChild(
+                        row
+                    );
+
+                }
+            );
+
+    });
+
+
+
+/* =================================
+   LOGOUT
+================================= */
+
+function logout() {
+
+    localStorage.removeItem(
+        "loggedInMember"
+    );
+
+
+    window.location.href =
+        "member-login.html";
+
+}
+
+</script>
+
+
+</body>
+
+</html>

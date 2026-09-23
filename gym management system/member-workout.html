@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Workout - Revive Fitness</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            padding: 30px 20px;
+
+            background-image:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.65),
+                    rgba(0, 0, 0, 0.65)
+                ),
+                url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=80");
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .container {
+            width: 850px;
+            max-width: 95%;
+            margin: auto;
+
+            background: rgba(255, 255, 255, 0.97);
+
+            padding: 35px;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 8px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            text-align: center;
+            color: #222;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .member-info {
+            background: #f5f5f5;
+            padding: 18px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+        .member-info p {
+            margin: 8px 0;
+            color: #333;
+        }
+
+        .workout-card {
+            background: #f5f5f5;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid #222;
+        }
+
+        .workout-card h2 {
+            color: #222;
+            margin-bottom: 10px;
+        }
+
+        .workout-card p {
+            color: #777;
+            margin-bottom: 15px;
+        }
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th {
+            background: #222;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background: #f5f5f5;
+        }
+
+        .no-workout {
+            text-align: center;
+            padding: 30px;
+            background: #f5f5f5;
+            border-radius: 10px;
+            color: #666;
+        }
+
+        .back-btn {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            color: #222;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-btn:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+
+            .container {
+                padding: 25px 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <h1>REVIVE FITNESS</h1>
+
+    <p class="subtitle">
+        My Workout
+    </p>
+
+
+    <!-- MEMBER INFORMATION -->
+
+    <div class="member-info">
+
+        <p>
+            <strong>Member:</strong>
+
+            <span id="memberName">
+                Loading...
+            </span>
+        </p>
+
+
+        <p>
+            <strong>Username:</strong>
+
+            <span id="memberUsername">
+                Loading...
+            </span>
+        </p>
+
+    </div>
+
+
+    <!-- WORKOUT AREA -->
+
+    <div id="workoutContainer">
+
+    </div>
+
+
+    <!-- BACK BUTTON -->
+
+    <a
+        href="member-dashboard.html"
+        class="back-btn">
+
+        ← Back to Member Dashboard
+
+    </a>
+
+
+</div>
+
+
+
+<script>
+
+
+/* =====================================
+   GET LOGGED-IN MEMBER
+===================================== */
+
+
+const loggedInMember =
+    localStorage.getItem("loggedInMember");
+
+
+/*
+   If member is not logged in
+*/
+
+if (!loggedInMember) {
+
+    alert("Please login first.");
+
+    window.location.href =
+        "member-login.html";
+
+}
+
+
+/*
+   If member is logged in
+*/
+
+else {
+
+    const member =
+        JSON.parse(loggedInMember);
+
+
+    /* ================================
+       SHOW MEMBER DETAILS
+    ================================= */
+
+    document.getElementById(
+        "memberName"
+    ).textContent =
+        member.name;
+
+
+    document.getElementById(
+        "memberUsername"
+    ).textContent =
+        member.username;
+
+
+
+    /* ================================
+       GET WORKOUTS
+    ================================= */
+
+    const workouts =
+        JSON.parse(
+            localStorage.getItem("workouts")
+        ) || [];
+
+
+    const workoutContainer =
+        document.getElementById(
+            "workoutContainer"
+        );
+
+
+    /* ================================
+       FIND MEMBER WORKOUT
+    ================================= */
+
+    const myWorkouts =
+        workouts.filter(function(workout) {
+
+            return String(workout.username)
+                .trim()
+                .toLowerCase()
+                ===
+                String(member.username)
+                .trim()
+                .toLowerCase();
+
+        });
+
+
+
+    /* ================================
+       NO WORKOUT
+    ================================= */
+
+    if (myWorkouts.length === 0) {
+
+        workoutContainer.innerHTML = `
+
+            <div class="no-workout">
+
+                <h2>
+                    No Workout Assigned
+                </h2>
+
+                <br>
+
+                <p>
+                    Your trainer has not assigned
+                    a workout yet.
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+
+
+    /* ================================
+       SHOW WORKOUT
+    ================================= */
+
+    else {
+
+        myWorkouts.forEach(function(workout) {
+
+
+            const card =
+                document.createElement("div");
+
+
+            card.className =
+                "workout-card";
+
+
+            let exerciseRows = "";
+
+
+            /*
+               Check exercises exist
+            */
+
+            if (
+                workout.exercises &&
+                Array.isArray(workout.exercises)
+            ) {
+
+
+                workout.exercises.forEach(
+                    function(exercise) {
+
+
+                        exerciseRows += `
+
+                            <tr>
+
+                                <td>
+                                    ${exercise.exercise || "-"}
+                                </td>
+
+                                <td>
+                                    ${exercise.sets || "-"}
+                                </td>
+
+                                <td>
+                                    ${exercise.reps || "-"}
+                                </td>
+
+                            </tr>
+
+                        `;
+
+                    }
+                );
+
+            }
+
+
+
+            card.innerHTML = `
+
+                <h2>
+                    ${workout.day || "Workout"}
+                </h2>
+
+                <p>
+                    Your assigned exercises
+                </p>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Exercise
+                                </th>
+
+                                <th>
+                                    Sets
+                                </th>
+
+                                <th>
+                                    Reps
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            ${exerciseRows}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            `;
+
+
+            workoutContainer.appendChild(card);
+
+        });
+
+    }
+
+}
+
+</script>
+
+
+</body>
+
+</html>

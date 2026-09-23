@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | Revive Fitness</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <div class="sidebar-logo-circle">
+                RF
+            </div>
+
+            <div>
+                <h2>REVIVE</h2>
+                <span>FITNESS</span>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="admin-dashboard.html"
+               class="nav-link active">
+
+                <span>⌂</span>
+                Dashboard
+
+            </a>
+
+
+            <a href="members.html"
+               class="nav-link">
+
+                <span>👥</span>
+                Members
+
+            </a>
+
+
+            <a href="membership.html"
+               class="nav-link">
+
+                <span>💳</span>
+                Membership
+
+            </a>
+
+
+            <a href="renew-membership.html"
+               class="renew-btn">
+
+                Renew Membership
+
+            </a>
+
+
+            <a href="attendance.html"
+               class="nav-link">
+
+                <span>✓</span>
+                Attendance
+
+            </a>
+
+
+            <a href="trainers.html"
+               class="nav-link">
+
+                <span>🏋</span>
+                Trainers
+
+            </a>
+
+
+            <a href="workout.html"
+               class="nav-link">
+
+                <span>💪</span>
+                Workouts
+
+            </a>
+
+
+            <a href="payment.html"
+               class="nav-link">
+
+                <span>₹</span>
+                Payments
+
+            </a>
+
+
+            <a href="progress.html"
+               class="nav-link">
+
+                <span>📊</span>
+                Progress
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="index.html"
+               class="logout-link">
+
+                <span>↪</span>
+                Logout
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="dashboard-main">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <p class="page-label">
+                    ADMIN PANEL
+                </p>
+
+                <h1>
+                    Dashboard
+                </h1>
+
+            </div>
+
+
+            <div class="admin-profile">
+
+                <div class="profile-avatar">
+                    A
+                </div>
+
+                <div>
+
+                    <strong>Admin</strong>
+
+                    <small>
+                        Administrator
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ================= WELCOME ================= -->
+
+        <section class="welcome-banner">
+
+            <div>
+
+                <p>
+                    GOOD MORNING, ADMIN
+                </p>
+
+                <h2>
+                    Welcome to Revive Fitness
+                </h2>
+
+                <span>
+                    Here's what's happening in your gym today.
+                </span>
+
+            </div>
+
+
+            <div class="banner-icon">
+                🏋️
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= STATISTICS ================= -->
+
+        <section class="stats-grid">
+
+
+            <!-- TOTAL MEMBERS -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    👥
+                </div>
+
+                <div>
+
+                    <p>
+                        Total Members
+                    </p>
+
+                    <h3 id="totalMembers">
+                        0
+                    </h3>
+
+                    <span id="memberGrowth"
+                          class="positive">
+
+                        -
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- TODAY ATTENDANCE -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <p>
+                        Today's Attendance
+                    </p>
+
+                    <h3 id="todayAttendance">
+                        0
+                    </h3>
+
+                    <span id="attendancePercentage"
+                          class="positive">
+
+                        0% of members
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ACTIVE MEMBERSHIPS -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    💳
+                </div>
+
+                <div>
+
+                    <p>
+                        Active Memberships
+                    </p>
+
+                    <h3 id="activeMemberships">
+                        0
+                    </h3>
+
+                    <span class="positive">
+
+                        Currently active
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- MONTHLY REVENUE -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ₹
+                </div>
+
+                <div>
+
+                    <p>
+                        Monthly Revenue
+                    </p>
+
+                    <h3 id="monthlyRevenue">
+                        ₹0
+                    </h3>
+
+                    <span class="positive">
+
+                        Paid payments this month
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ================= LOWER SECTION ================= -->
+
+        <section class="dashboard-grid">
+
+
+            <!-- RECENT MEMBERS -->
+
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <p class="card-label">
+                            MEMBERS
+                        </p>
+
+                        <h2>
+                            Recent Members
+                        </h2>
+
+                    </div>
+
+
+                    <a href="members.html">
+                        View All →
+                    </a>
+
+                </div>
+
+
+                <!-- JS WILL INSERT MEMBERS HERE -->
+
+                <div id="recentMembers">
+
+                </div>
+
+            </div>
+
+
+
+            <!-- QUICK ACTIONS -->
+
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <p class="card-label">
+                            MANAGEMENT
+                        </p>
+
+                        <h2>
+                            Quick Actions
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="quick-actions">
+
+
+                    <a href="members.html">
+
+                        <span>＋</span>
+
+                        Add Member
+
+                    </a>
+
+
+                    <a href="attendance.html">
+
+                        <span>✓</span>
+
+                        Mark Attendance
+
+                    </a>
+
+
+                    <a href="payment.html">
+
+                        <span>₹</span>
+
+                        Record Payment
+
+                    </a>
+
+
+                    <a href="workout.html">
+
+                        <span>💪</span>
+
+                        Assign Workout
+
+                    </a>
+
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+
+<!-- ================= GYM MEMBERS TABLE ================= -->
+
+<section class="members-section">
+
+    <h2>
+        Gym Members
+    </h2>
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Name</th>
+
+                    <th>Phone</th>
+
+                    <th>Plan</th>
+
+                    <th>Start Date</th>
+
+                    <th>Expiry Date</th>
+
+                    <th>Trainer</th>
+
+                    <th>Status</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="membersTableBody">
+
+                <!-- JavaScript loads members -->
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+
+<script src="admin-dashboard.js"></script>
+
+</body>
+
+</html>

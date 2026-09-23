@@ -1,0 +1,176 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    padding: 40px 20px;
+
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.60)),
+        url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=80");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Main Form Container */
+
+.container {
+    width: 600px;
+    max-width: 95%;
+    margin: auto;
+
+    background: rgba(255, 255, 255, 0.96);
+
+    padding: 35px;
+
+    border-radius: 15px;
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Heading */
+
+h1 {
+    text-align: center;
+    color: #222;
+    font-size: 32px;
+    margin-bottom: 5px;
+}
+
+h2 {
+    text-align: center;
+    color: #555;
+    font-size: 22px;
+    margin-bottom: 30px;
+}
+
+/* Form */
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    margin-bottom: 7px;
+
+    color: #333;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+input,
+select {
+    width: 100%;
+
+    padding: 12px 14px;
+
+    border: 1px solid #ccc;
+    border-radius: 7px;
+
+    font-size: 15px;
+    background: white;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #222;
+
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Add Member Button */
+
+button {
+    width: 100%;
+
+    padding: 14px;
+    margin-top: 10px;
+
+    border: none;
+    border-radius: 7px;
+
+    background: #222;
+    color: white;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #444;
+    transform: translateY(-2px);
+}
+
+/* Success Message */
+
+#message {
+    text-align: center;
+
+    margin-top: 18px;
+
+    font-size: 15px;
+    font-weight: bold;
+}
+
+/* Back Button */
+
+.back-btn {
+    display: block;
+
+    width: fit-content;
+
+    margin: 20px auto 0;
+
+    padding: 10px 18px;
+
+    text-decoration: none;
+
+    color: #222;
+
+    font-weight: bold;
+
+    border: 1px solid #222;
+
+    border-radius: 6px;
+
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    background: #222;
+    color: white;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 20px 10px;
+    }
+
+    .container {
+        padding: 25px 20px;
+    }
+
+    h1 {
+        font-size: 27px;
+    }
+
+    h2 {
+        font-size: 19px;
+    }
+}

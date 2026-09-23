@@ -1,0 +1,1542 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Progress - Revive Fitness</title>
+
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+
+body {
+    background: #f4f6f8;
+    color: #222;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    background: #111827;
+    color: white;
+
+    padding: 18px 25px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.header h1 {
+    font-size: 24px;
+}
+
+
+.dashboard-btn {
+    background: #22c55e;
+    color: white;
+
+    border: none;
+
+    padding: 10px 18px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}
+
+
+.dashboard-btn:hover {
+    background: #16a34a;
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container {
+    max-width: 1000px;
+
+    margin: 30px auto;
+
+    padding: 0 20px;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.card {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 12px;
+
+    margin-bottom: 25px;
+
+    box-shadow:
+        0 3px 12px rgba(0,0,0,0.08);
+}
+
+
+.card h2 {
+    margin-bottom: 20px;
+
+    color: #111827;
+}
+
+
+/* =========================
+   MEMBER SELECT
+========================= */
+
+.member-select label {
+    display: block;
+
+    font-weight: bold;
+
+    margin-bottom: 8px;
+}
+
+
+.member-select select {
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 7px;
+
+    font-size: 15px;
+
+    background: white;
+}
+
+
+.member-select select:focus {
+    outline: none;
+
+    border-color: #22c55e;
+}
+
+
+/* =========================
+   STARTING DETAILS
+========================= */
+
+.starting-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+}
+
+
+.info-box {
+    background: #f9fafb;
+
+    padding: 20px;
+
+    border-radius: 10px;
+
+    text-align: center;
+}
+
+
+.info-box h3 {
+    font-size: 14px;
+
+    color: #666;
+
+    margin-bottom: 10px;
+}
+
+
+.info-box p {
+    font-size: 22px;
+
+    font-weight: bold;
+
+    color: #111827;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+
+.form-group {
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.form-group label {
+    margin-bottom: 7px;
+
+    font-weight: bold;
+}
+
+
+.form-group input {
+    padding: 11px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 7px;
+
+    font-size: 15px;
+}
+
+
+.form-group input:focus {
+    outline: none;
+
+    border-color: #22c55e;
+}
+
+
+/* =========================
+   BMI
+========================= */
+
+.bmi-box {
+    background: #ecfdf5;
+
+    border: 1px solid #86efac;
+
+    padding: 15px;
+
+    border-radius: 8px;
+
+    margin-top: 20px;
+}
+
+
+.bmi-box strong {
+    font-size: 21px;
+
+    margin-left: 5px;
+}
+
+
+.bmi-status {
+    margin-left: 8px;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   SAVE BUTTON
+========================= */
+
+.save-btn {
+    margin-top: 20px;
+
+    background: #2563eb;
+
+    color: white;
+
+    border: none;
+
+    padding: 12px 25px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+}
+
+
+.save-btn:hover {
+    background: #1d4ed8;
+}
+
+
+/* =========================
+   TABLE
+========================= */
+
+.table-container {
+    overflow-x: auto;
+}
+
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+
+th,
+td {
+    padding: 13px;
+
+    border-bottom:
+        1px solid #ddd;
+
+    text-align: center;
+}
+
+
+th {
+    background: #111827;
+
+    color: white;
+}
+
+
+tr:hover {
+    background: #f9fafb;
+}
+
+
+/* =========================
+   DELETE
+========================= */
+
+.delete-btn {
+    background: #ef4444;
+
+    color: white;
+
+    border: none;
+
+    padding: 7px 12px;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+
+.delete-btn:hover {
+    background: #dc2626;
+}
+
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty {
+    text-align: center;
+
+    padding: 20px;
+
+    color: #777;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .starting-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .header {
+        flex-direction: column;
+
+        gap: 12px;
+
+        text-align: center;
+    }
+
+
+    .container {
+        padding: 0 10px;
+    }
+
+
+    .card {
+        padding: 18px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<div class="header">
+
+    <h1>
+        Revive Fitness - Progress
+    </h1>
+
+
+    <button
+        class="dashboard-btn"
+        type="button"
+        onclick="goDashboard()"
+    >
+
+        ← Dashboard
+
+    </button>
+
+</div>
+
+
+
+<div class="container">
+
+
+<!-- =========================
+     SELECT MEMBER
+========================= -->
+
+<div class="card">
+
+    <h2>
+        Select Member
+    </h2>
+
+
+    <div class="member-select">
+
+        <label>
+            Member
+        </label>
+
+
+        <select id="memberSelect">
+
+            <option value="">
+                Select Member
+            </option>
+
+        </select>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================
+     STARTING INFORMATION
+========================= -->
+
+<div class="card">
+
+    <h2>
+        Starting Information
+    </h2>
+
+
+    <p
+        style="
+        color:#666;
+        margin-bottom:20px;
+        "
+    >
+
+        These values come automatically
+        from the Add Member section.
+
+    </p>
+
+
+    <div class="starting-grid">
+
+
+        <!-- STARTING WEIGHT -->
+
+        <div class="info-box">
+
+            <h3>
+                Starting Weight
+            </h3>
+
+            <p id="startingWeight">
+                --
+            </p>
+
+        </div>
+
+
+        <!-- STARTING HEIGHT -->
+
+        <div class="info-box">
+
+            <h3>
+                Starting Height
+            </h3>
+
+            <p id="startingHeight">
+                --
+            </p>
+
+        </div>
+
+
+        <!-- STARTING BMI -->
+
+        <div class="info-box">
+
+            <h3>
+                Starting BMI
+            </h3>
+
+            <p id="startingBMI">
+                --
+            </p>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================
+     UPDATE PROGRESS
+========================= -->
+
+<div class="card">
+
+    <h2>
+        Update Progress
+    </h2>
+
+
+    <div class="form-grid">
+
+
+        <!-- DATE -->
+
+        <div class="form-group">
+
+            <label>
+                Date
+            </label>
+
+            <input
+                type="date"
+                id="progressDate"
+            >
+
+        </div>
+
+
+        <!-- CURRENT WEIGHT -->
+
+        <div class="form-group">
+
+            <label>
+                Current Weight (kg)
+            </label>
+
+            <input
+                type="number"
+                id="currentWeight"
+                placeholder="Enter weight"
+                step="0.1"
+                min="1"
+            >
+
+        </div>
+
+
+        <!-- CURRENT HEIGHT -->
+
+        <div class="form-group">
+
+            <label>
+                Current Height (cm)
+            </label>
+
+            <input
+                type="number"
+                id="currentHeight"
+                placeholder="Enter height"
+                step="0.1"
+                min="1"
+            >
+
+        </div>
+
+    </div>
+
+
+
+    <!-- CURRENT BMI -->
+
+    <div class="bmi-box">
+
+        Current BMI:
+
+        <strong id="currentBMI">
+            --
+        </strong>
+
+
+        <span
+            id="bmiStatus"
+            class="bmi-status"
+        ></span>
+
+    </div>
+
+
+    <button
+        class="save-btn"
+        type="button"
+        onclick="saveProgress()"
+    >
+
+        Save Progress
+
+    </button>
+
+</div>
+
+
+
+<!-- =========================
+     PROGRESS RECORDS
+========================= -->
+
+<div class="card">
+
+    <h2>
+        Progress Records
+    </h2>
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Date
+                    </th>
+
+                    <th>
+                        Weight
+                    </th>
+
+                    <th>
+                        Height
+                    </th>
+
+                    <th>
+                        BMI
+                    </th>
+
+                    <th>
+                        Action
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="progressTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+/* =====================================================
+   LOAD MEMBERS
+===================================================== */
+
+/*
+    IMPORTANT:
+
+    Your add-member.js saves members like:
+
+    {
+        name: "...",
+        weight: "...",
+        height: "...",
+        username: "...",
+        ...
+    }
+
+    So we use exactly those fields here.
+*/
+
+
+let members =
+    JSON.parse(
+        localStorage.getItem("members")
+    ) || [];
+
+
+const memberSelect =
+    document.getElementById(
+        "memberSelect"
+    );
+
+
+
+/* =====================================================
+   LOAD MEMBER NAMES
+===================================================== */
+
+function loadMembers() {
+
+    memberSelect.innerHTML = `
+        <option value="">
+            Select Member
+        </option>
+    `;
+
+
+    if (members.length === 0) {
+
+        memberSelect.innerHTML = `
+            <option value="">
+                No members found
+            </option>
+        `;
+
+        return;
+    }
+
+
+    members.forEach(
+        function(member, index) {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+
+            option.value =
+                index;
+
+
+            /*
+                YOUR EXACT FIELD:
+                member.name
+            */
+
+            option.textContent =
+                member.name;
+
+
+            memberSelect.appendChild(
+                option
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   BMI CALCULATION
+===================================================== */
+
+function calculateBMI(
+    weight,
+    height
+) {
+
+    const w =
+        parseFloat(weight);
+
+
+    const h =
+        parseFloat(height);
+
+
+    if (
+        !w ||
+        !h ||
+        h <= 0
+    ) {
+
+        return null;
+
+    }
+
+
+    const heightMeter =
+        h / 100;
+
+
+    return (
+        w /
+        (
+            heightMeter *
+            heightMeter
+        )
+    );
+
+}
+
+
+
+/* =====================================================
+   BMI STATUS
+===================================================== */
+
+function getBMIStatus(bmi) {
+
+    if (bmi < 18.5) {
+
+        return "Underweight";
+
+    }
+
+
+    if (bmi < 25) {
+
+        return "Normal";
+
+    }
+
+
+    if (bmi < 30) {
+
+        return "Overweight";
+
+    }
+
+
+    return "Obese";
+
+}
+
+
+
+/* =====================================================
+   SHOW STARTING INFORMATION
+===================================================== */
+
+function showStartingInformation() {
+
+    const index =
+        memberSelect.value;
+
+
+    if (index === "") {
+
+        document.getElementById(
+            "startingWeight"
+        ).textContent = "--";
+
+
+        document.getElementById(
+            "startingHeight"
+        ).textContent = "--";
+
+
+        document.getElementById(
+            "startingBMI"
+        ).textContent = "--";
+
+
+        return;
+    }
+
+
+    const member =
+        members[index];
+
+
+    /*
+        YOUR ADD-MEMBER DATA:
+
+        member.weight
+        member.height
+    */
+
+    const weight =
+        parseFloat(
+            member.weight
+        );
+
+
+    const height =
+        parseFloat(
+            member.height
+        );
+
+
+    /* STARTING WEIGHT */
+
+    document.getElementById(
+        "startingWeight"
+    ).textContent =
+
+        weight
+        ? weight + " kg"
+        : "--";
+
+
+    /* STARTING HEIGHT */
+
+    document.getElementById(
+        "startingHeight"
+    ).textContent =
+
+        height
+        ? height + " cm"
+        : "--";
+
+
+    /* STARTING BMI */
+
+    const bmi =
+        calculateBMI(
+            weight,
+            height
+        );
+
+
+    document.getElementById(
+        "startingBMI"
+    ).textContent =
+
+        bmi
+        ? bmi.toFixed(2)
+        : "--";
+
+
+    /*
+        Automatically use
+        starting height as
+        current height.
+    */
+
+    if (height) {
+
+        document.getElementById(
+            "currentHeight"
+        ).value =
+            height;
+
+    }
+
+
+    displayProgress();
+
+}
+
+
+
+/* =====================================================
+   CURRENT BMI
+===================================================== */
+
+function calculateCurrentBMI() {
+
+    const weight =
+        document.getElementById(
+            "currentWeight"
+        ).value;
+
+
+    const height =
+        document.getElementById(
+            "currentHeight"
+        ).value;
+
+
+    const bmi =
+        calculateBMI(
+            weight,
+            height
+        );
+
+
+    if (bmi === null) {
+
+        document.getElementById(
+            "currentBMI"
+        ).textContent =
+            "--";
+
+
+        document.getElementById(
+            "bmiStatus"
+        ).textContent =
+            "";
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "currentBMI"
+    ).textContent =
+        bmi.toFixed(2);
+
+
+    document.getElementById(
+        "bmiStatus"
+    ).textContent =
+        " - " +
+        getBMIStatus(bmi);
+
+}
+
+
+
+/* =====================================================
+   BMI INPUT EVENTS
+===================================================== */
+
+document
+    .getElementById("currentWeight")
+    .addEventListener(
+        "input",
+        calculateCurrentBMI
+    );
+
+
+document
+    .getElementById("currentHeight")
+    .addEventListener(
+        "input",
+        calculateCurrentBMI
+    );
+
+
+
+/* =====================================================
+   MEMBER SELECT EVENT
+===================================================== */
+
+memberSelect.addEventListener(
+    "change",
+    function() {
+
+        showStartingInformation();
+
+
+        document.getElementById(
+            "currentWeight"
+        ).value = "";
+
+
+        document.getElementById(
+            "progressDate"
+        ).value = "";
+
+
+        document.getElementById(
+            "currentBMI"
+        ).textContent =
+            "--";
+
+
+        document.getElementById(
+            "bmiStatus"
+        ).textContent =
+            "";
+
+    }
+);
+
+
+
+/* =====================================================
+   SAVE PROGRESS
+===================================================== */
+
+function saveProgress() {
+
+    const index =
+        memberSelect.value;
+
+
+    if (index === "") {
+
+        alert(
+            "Please select a member."
+        );
+
+        return;
+
+    }
+
+
+    const date =
+        document.getElementById(
+            "progressDate"
+        ).value;
+
+
+    const weight =
+        parseFloat(
+            document.getElementById(
+                "currentWeight"
+            ).value
+        );
+
+
+    const height =
+        parseFloat(
+            document.getElementById(
+                "currentHeight"
+            ).value
+        );
+
+
+    if (!date) {
+
+        alert(
+            "Please select a date."
+        );
+
+        return;
+
+    }
+
+
+    if (
+        !weight ||
+        weight <= 0
+    ) {
+
+        alert(
+            "Please enter a valid weight."
+        );
+
+        return;
+
+    }
+
+
+    if (
+        !height ||
+        height <= 0
+    ) {
+
+        alert(
+            "Please enter a valid height."
+        );
+
+        return;
+
+    }
+
+
+    const member =
+        members[index];
+
+
+    const bmi =
+        calculateBMI(
+            weight,
+            height
+        );
+
+
+    let progressData =
+        JSON.parse(
+            localStorage.getItem(
+                "progressData"
+            )
+        ) || [];
+
+
+    const record = {
+
+        id:
+            Date.now(),
+
+        /*
+            IMPORTANT:
+            username uniquely identifies
+            the member.
+        */
+
+        username:
+            member.username,
+
+        name:
+            member.name,
+
+        date:
+            date,
+
+        weight:
+            weight,
+
+        height:
+            height,
+
+        bmi:
+            Number(
+                bmi.toFixed(2)
+            )
+
+    };
+
+
+    progressData.push(
+        record
+    );
+
+
+    localStorage.setItem(
+        "progressData",
+        JSON.stringify(
+            progressData
+        )
+    );
+
+
+    alert(
+        "Progress saved successfully!"
+    );
+
+
+    /* Clear fields */
+
+    document.getElementById(
+        "progressDate"
+    ).value = "";
+
+
+    document.getElementById(
+        "currentWeight"
+    ).value = "";
+
+
+    /*
+        Restore starting height
+    */
+
+    document.getElementById(
+        "currentHeight"
+    ).value =
+        member.height;
+
+
+    document.getElementById(
+        "currentBMI"
+    ).textContent =
+        "--";
+
+
+    document.getElementById(
+        "bmiStatus"
+    ).textContent =
+        "";
+
+
+    displayProgress();
+
+}
+
+
+
+/* =====================================================
+   DISPLAY PROGRESS
+===================================================== */
+
+function displayProgress() {
+
+    const table =
+        document.getElementById(
+            "progressTable"
+        );
+
+
+    const index =
+        memberSelect.value;
+
+
+    table.innerHTML = "";
+
+
+    if (index === "") {
+
+        table.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="5"
+                    class="empty"
+                >
+
+                    Select a member to view
+                    progress records.
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    const member =
+        members[index];
+
+
+    let progressData =
+        JSON.parse(
+            localStorage.getItem(
+                "progressData"
+            )
+        ) || [];
+
+
+    /*
+        Show only the selected member.
+    */
+
+    const records =
+        progressData.filter(
+            function(record) {
+
+                return (
+                    record.username ===
+                    member.username
+                );
+
+            }
+        );
+
+
+    if (records.length === 0) {
+
+        table.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="5"
+                    class="empty"
+                >
+
+                    No progress records
+                    for this member.
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    records.forEach(
+        function(record) {
+
+            const row =
+                document.createElement(
+                    "tr"
+                );
+
+
+            row.innerHTML = `
+
+                <td>
+                    ${record.date}
+                </td>
+
+                <td>
+                    ${record.weight} kg
+                </td>
+
+                <td>
+                    ${record.height} cm
+                </td>
+
+                <td>
+                    ${record.bmi}
+                </td>
+
+                <td>
+
+                    <button
+                        class="delete-btn"
+                        onclick="deleteProgress(${record.id})"
+                    >
+
+                        Delete
+
+                    </button>
+
+                </td>
+
+            `;
+
+
+            table.appendChild(
+                row
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   DELETE PROGRESS
+===================================================== */
+
+function deleteProgress(id) {
+
+    if (
+        !confirm(
+            "Are you sure you want to delete this record?"
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    let progressData =
+        JSON.parse(
+            localStorage.getItem(
+                "progressData"
+            )
+        ) || [];
+
+
+    progressData =
+        progressData.filter(
+            function(record) {
+
+                return record.id !== id;
+
+            }
+        );
+
+
+    localStorage.setItem(
+        "progressData",
+        JSON.stringify(
+            progressData
+        )
+    );
+
+
+    displayProgress();
+
+}
+
+
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+function goDashboard() {
+
+    window.location.href =
+        "admin-dashboard.html";
+
+}
+
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+loadMembers();
+
+showStartingInformation();
+
+displayProgress();
+
+</script>
+
+
+</body>
+
+</html>

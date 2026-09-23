@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Add Member - Revive Fitness</title>
+
+    <link rel="stylesheet"
+          href="add.member.css">
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <h1>
+        Revive Fitness
+    </h1>
+
+
+    <h2>
+        Add New Member
+    </h2>
+
+
+    <form id="memberForm">
+
+
+        <!-- =========================
+             BASIC DETAILS
+        ========================= -->
+
+
+        <div class="form-group">
+
+            <label>
+                Full Name
+            </label>
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Enter member name"
+                required>
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label>
+                Email
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter email"
+                required>
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label>
+                Phone Number
+            </label>
+
+            <input
+                type="tel"
+                id="phone"
+                placeholder="Enter phone number"
+                required>
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label>
+                Age
+            </label>
+
+            <input
+                type="number"
+                id="age"
+                placeholder="Enter age"
+                required>
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label>
+                Gender
+            </label>
+
+            <select
+                id="gender"
+                required>
+
+                <option value="">
+                    Select Gender
+                </option>
+
+                <option value="Male">
+                    Male
+                </option>
+
+                <option value="Female">
+                    Female
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- =========================
+             MEMBERSHIP
+        ========================= -->
+
+
+        <div class="form-group">
+
+            <label>
+                Membership Plan
+            </label>
+
+            <select
+                id="plan"
+                required>
+
+                <option value="">
+                    Select Plan
+                </option>
+
+                <option value="Monthly">
+                    Monthly
+                </option>
+
+                <option value="Quarterly">
+                    Quarterly
+                </option>
+
+                <option value="Half Yearly">
+                    Half Yearly
+                </option>
+
+                <option value="Yearly">
+                    Yearly
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label>
+                Membership Start Date
+            </label>
+
+            <input
+                type="date"
+                id="startDate"
+                required>
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label>
+                Membership Expiry Date
+            </label>
+
+            <input
+                type="date"
+                id="expiryDate"
+                required>
+
+        </div>
+
+
+
+        <!-- =========================
+             FITNESS DETAILS
+        ========================= -->
+
+
+        <div class="form-group">
+
+            <label>
+                Weight (kg)
+            </label>
+
+            <input
+                type="number"
+                id="weight"
+                placeholder="Enter weight"
+                step="0.1">
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label>
+                Height (cm)
+            </label>
+
+            <input
+                type="number"
+                id="height"
+                placeholder="Enter height"
+                step="0.1">
+
+        </div>
+
+
+
+        <!-- =========================
+             ASSIGNED TRAINER
+        ========================= -->
+
+
+        <div class="form-group">
+
+            <label>
+                Assigned Trainer
+            </label>
+
+            <select id="trainer">
+
+                <option value="">
+                    Select Trainer
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- =========================
+             LOGIN DETAILS
+        ========================= -->
+
+
+        <div class="form-group">
+
+            <label>
+                Username
+            </label>
+
+            <input
+                type="text"
+                id="username"
+                placeholder="Create username"
+                required>
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label>
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Create password"
+                required>
+
+        </div>
+
+
+
+        <!-- =========================
+             SUBMIT
+        ========================= -->
+
+
+        <button type="submit">
+
+            Add Member
+
+        </button>
+
+
+    </form>
+
+
+
+    <p id="message"></p>
+
+
+
+    <a
+        href="admin-dashboard.html"
+        class="back-btn">
+
+        ← Back to Admin Dashboard
+
+    </a>
+
+
+</div>
+
+
+
+<script src="add-member.js"></script>
+
+
+<script>
+
+
+/* =====================================================
+   LOAD TRAINERS
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        const trainerSelect =
+            document.getElementById(
+                "trainer"
+            );
+
+
+        const trainers =
+            JSON.parse(
+                localStorage.getItem(
+                    "trainers"
+                )
+            ) || [];
+
+
+        /*
+         * Only Active trainers
+         * should be available
+         * for assignment.
+         */
+
+        const activeTrainers =
+            trainers.filter(
+                function (trainer) {
+
+                    return (
+                        trainer.status ===
+                        "Active"
+                    );
+
+                }
+            );
+
+
+        if (
+            activeTrainers.length === 0
+        ) {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+
+            option.value = "";
+
+
+            option.textContent =
+                "No active trainers available";
+
+
+            option.disabled = true;
+
+
+            trainerSelect.appendChild(
+                option
+            );
+
+
+            return;
+
+        }
+
+
+        activeTrainers.forEach(
+            function (trainer) {
+
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+
+                /*
+                 * Store trainer ID
+                 * as the option value.
+                 */
+
+                option.value =
+                    trainer.id;
+
+
+                /*
+                 * Show trainer name
+                 * and specialization.
+                 */
+
+                option.textContent =
+                    trainer.name +
+                    " - " +
+                    trainer.specialization;
+
+
+                trainerSelect.appendChild(
+                    option
+                );
+
+            }
+        );
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

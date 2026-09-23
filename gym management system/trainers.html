@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Trainers | Revive Fitness</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+
+        body {
+            background: #f4f6f8;
+            color: #222;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+
+            background: #111827;
+
+            color: white;
+
+            padding: 18px 30px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+        }
+
+
+        .header h1 {
+            font-size: 24px;
+        }
+
+
+        .dashboard-btn {
+
+            background: #22c55e;
+
+            color: white;
+
+            border: none;
+
+            padding: 10px 18px;
+
+            border-radius: 7px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+        }
+
+
+        .dashboard-btn:hover {
+            background: #16a34a;
+        }
+
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
+        .container {
+
+            max-width: 1100px;
+
+            margin: 30px auto;
+
+            padding: 0 20px;
+
+        }
+
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .card {
+
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 12px;
+
+            margin-bottom: 25px;
+
+            box-shadow:
+                0 4px 15px
+                rgba(0,0,0,0.08);
+
+        }
+
+
+        .card h2 {
+
+            margin-bottom: 20px;
+
+            color: #111827;
+
+        }
+
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+
+        }
+
+
+        .form-group {
+
+            display: flex;
+
+            flex-direction: column;
+
+        }
+
+
+        .form-group label {
+
+            font-weight: bold;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        .form-group input,
+        .form-group select {
+
+            padding: 11px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 7px;
+
+            font-size: 15px;
+
+        }
+
+
+        .form-group input:focus,
+        .form-group select:focus {
+
+            outline: none;
+
+            border-color: #22c55e;
+
+        }
+
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        .save-btn {
+
+            margin-top: 20px;
+
+            background: #2563eb;
+
+            color: white;
+
+            border: none;
+
+            padding: 12px 25px;
+
+            border-radius: 7px;
+
+            cursor: pointer;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+        }
+
+
+        .save-btn:hover {
+            background: #1d4ed8;
+        }
+
+
+        .cancel-btn {
+
+            margin-top: 20px;
+
+            margin-left: 8px;
+
+            background: #6b7280;
+
+            color: white;
+
+            border: none;
+
+            padding: 12px 25px;
+
+            border-radius: 7px;
+
+            cursor: pointer;
+
+            font-size: 15px;
+
+        }
+
+
+        .cancel-btn:hover {
+            background: #4b5563;
+        }
+
+
+        /* =========================
+           MESSAGE
+        ========================= */
+
+        #message {
+
+            margin-top: 15px;
+
+            font-weight: bold;
+
+        }
+
+
+        /* =========================
+           SEARCH
+        ========================= */
+
+        .search-box {
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .search-box input {
+
+            width: 100%;
+
+            padding: 12px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 7px;
+
+            font-size: 15px;
+
+        }
+
+
+        /* =========================
+           TABLE
+        ========================= */
+
+        .table-container {
+
+            overflow-x: auto;
+
+        }
+
+
+        table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+        }
+
+
+        th,
+        td {
+
+            padding: 12px;
+
+            border-bottom:
+                1px solid #ddd;
+
+            text-align: center;
+
+        }
+
+
+        th {
+
+            background: #111827;
+
+            color: white;
+
+        }
+
+
+        tr:hover {
+
+            background: #f9fafb;
+
+        }
+
+
+        /* =========================
+           STATUS
+        ========================= */
+
+        .status {
+
+            padding: 5px 10px;
+
+            border-radius: 20px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+        }
+
+
+        .active {
+
+            background: #dcfce7;
+
+            color: #15803d;
+
+        }
+
+
+        .inactive {
+
+            background: #fee2e2;
+
+            color: #dc2626;
+
+        }
+
+
+        /* =========================
+           ACTION BUTTONS
+        ========================= */
+
+        .edit-btn {
+
+            background: #f59e0b;
+
+            color: white;
+
+            border: none;
+
+            padding: 7px 12px;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+            margin-right: 5px;
+
+        }
+
+
+        .delete-btn {
+
+            background: #ef4444;
+
+            color: white;
+
+            border: none;
+
+            padding: 7px 12px;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+        }
+
+
+        .edit-btn:hover {
+            background: #d97706;
+        }
+
+
+        .delete-btn:hover {
+            background: #dc2626;
+        }
+
+
+        .empty {
+
+            text-align: center;
+
+            padding: 20px;
+
+            color: #777;
+
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media(max-width: 750px) {
+
+            .form-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .header {
+
+                flex-direction: column;
+
+                gap: 12px;
+
+                text-align: center;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+    <h1>
+        Revive Fitness - Trainers
+    </h1>
+
+
+    <button
+        class="dashboard-btn"
+        onclick="goDashboard()">
+
+        ← Dashboard
+
+    </button>
+
+</header>
+
+
+
+<div class="container">
+
+
+<!-- =========================
+     ADD TRAINER
+========================= -->
+
+<div class="card">
+
+    <h2 id="formTitle">
+        Add Trainer
+    </h2>
+
+
+    <div class="form-grid">
+
+
+        <!-- NAME -->
+
+        <div class="form-group">
+
+            <label>
+                Trainer Name
+            </label>
+
+            <input
+                type="text"
+                id="trainerName"
+                placeholder="Enter trainer name">
+
+        </div>
+
+
+        <!-- EMAIL -->
+
+        <div class="form-group">
+
+            <label>
+                Email
+            </label>
+
+            <input
+                type="email"
+                id="trainerEmail"
+                placeholder="Enter email">
+
+        </div>
+
+
+        <!-- PHONE -->
+
+        <div class="form-group">
+
+            <label>
+                Phone
+            </label>
+
+            <input
+                type="tel"
+                id="trainerPhone"
+                placeholder="Enter phone number">
+
+        </div>
+
+
+        <!-- AGE -->
+
+        <div class="form-group">
+
+            <label>
+                Age
+            </label>
+
+            <input
+                type="number"
+                id="trainerAge"
+                placeholder="Enter age"
+                min="18">
+
+        </div>
+
+
+        <!-- GENDER -->
+
+        <div class="form-group">
+
+            <label>
+                Gender
+            </label>
+
+            <select id="trainerGender">
+
+                <option value="">
+                    Select Gender
+                </option>
+
+                <option value="Male">
+                    Male
+                </option>
+
+                <option value="Female">
+                    Female
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- SPECIALIZATION -->
+
+        <div class="form-group">
+
+            <label>
+                Specialization
+            </label>
+
+            <select id="specialization">
+
+                <option value="">
+                    Select Specialization
+                </option>
+
+                <option value="Strength Training">
+                    Strength Training
+                </option>
+
+                <option value="Weight Loss">
+                    Weight Loss
+                </option>
+
+                <option value="Muscle Building">
+                    Muscle Building
+                </option>
+
+                <option value="Cardio">
+                    Cardio
+                </option>
+
+                <option value="Yoga">
+                    Yoga
+                </option>
+
+                <option value="CrossFit">
+                    CrossFit
+                </option>
+
+                <option value="General Fitness">
+                    General Fitness
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- JOINING DATE -->
+
+        <div class="form-group">
+
+            <label>
+                Joining Date
+            </label>
+
+            <input
+                type="date"
+                id="joiningDate">
+
+        </div>
+
+
+        <!-- SALARY -->
+
+        <div class="form-group">
+
+            <label>
+                Salary (₹)
+            </label>
+
+            <input
+                type="number"
+                id="salary"
+                placeholder="Enter salary"
+                min="0">
+
+        </div>
+
+
+        <!-- STATUS -->
+
+        <div class="form-group">
+
+            <label>
+                Status
+            </label>
+
+            <select id="trainerStatus">
+
+                <option value="Active">
+                    Active
+                </option>
+
+                <option value="Inactive">
+                    Inactive
+                </option>
+
+            </select>
+
+        </div>
+
+
+    </div>
+
+
+    <button
+        class="save-btn"
+        id="saveBtn"
+        onclick="saveTrainer()">
+
+        Add Trainer
+
+    </button>
+
+
+    <button
+        class="cancel-btn"
+        id="cancelBtn"
+        onclick="cancelEdit()"
+        style="display:none;">
+
+        Cancel
+
+    </button>
+
+
+    <div id="message"></div>
+
+</div>
+
+
+
+<!-- =========================
+     TRAINER LIST
+========================= -->
+
+<div class="card">
+
+    <h2>
+        Trainers
+    </h2>
+
+
+    <!-- SEARCH -->
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="searchTrainer"
+            placeholder="Search trainer by name, phone or specialization...">
+
+    </div>
+
+
+    <!-- TABLE -->
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Name
+                    </th>
+
+                    <th>
+                        Phone
+                    </th>
+
+                    <th>
+                        Specialization
+                    </th>
+
+                    <th>
+                        Joining Date
+                    </th>
+
+                    <th>
+                        Salary
+                    </th>
+
+                    <th>
+                        Status
+                    </th>
+
+                    <th>
+                        Action
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="trainerTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+
+/* =====================================================
+   TRAINERS DATA
+===================================================== */
+
+let trainers =
+    JSON.parse(
+        localStorage.getItem("trainers")
+    ) || [];
+
+
+let editingId = null;
+
+
+
+/* =====================================================
+   SAVE TRAINER
+===================================================== */
+
+function saveTrainer() {
+
+
+    const name =
+        document.getElementById(
+            "trainerName"
+        ).value.trim();
+
+
+    const email =
+        document.getElementById(
+            "trainerEmail"
+        ).value.trim();
+
+
+    const phone =
+        document.getElementById(
+            "trainerPhone"
+        ).value.trim();
+
+
+    const age =
+        document.getElementById(
+            "trainerAge"
+        ).value;
+
+
+    const gender =
+        document.getElementById(
+            "trainerGender"
+        ).value;
+
+
+    const specialization =
+        document.getElementById(
+            "specialization"
+        ).value;
+
+
+    const joiningDate =
+        document.getElementById(
+            "joiningDate"
+        ).value;
+
+
+    const salary =
+        document.getElementById(
+            "salary"
+        ).value;
+
+
+    const status =
+        document.getElementById(
+            "trainerStatus"
+        ).value;
+
+
+
+    /* VALIDATION */
+
+    if (
+        !name ||
+        !email ||
+        !phone ||
+        !age ||
+        !gender ||
+        !specialization ||
+        !joiningDate ||
+        !salary
+    ) {
+
+        showMessage(
+            "Please fill all fields.",
+            "red"
+        );
+
+        return;
+
+    }
+
+
+
+    /* =================================================
+       EDIT TRAINER
+    ================================================= */
+
+    if (editingId !== null) {
+
+
+        const index =
+            trainers.findIndex(
+                function(trainer) {
+
+                    return (
+                        trainer.id ===
+                        editingId
+                    );
+
+                }
+            );
+
+
+        if (index !== -1) {
+
+            trainers[index] = {
+
+                id:
+                    editingId,
+
+                name:
+                    name,
+
+                email:
+                    email,
+
+                phone:
+                    phone,
+
+                age:
+                    age,
+
+                gender:
+                    gender,
+
+                specialization:
+                    specialization,
+
+                joiningDate:
+                    joiningDate,
+
+                salary:
+                    salary,
+
+                status:
+                    status
+
+            };
+
+        }
+
+
+        editingId = null;
+
+
+        document.getElementById(
+            "formTitle"
+        ).textContent =
+            "Add Trainer";
+
+
+        document.getElementById(
+            "saveBtn"
+        ).textContent =
+            "Add Trainer";
+
+
+        document.getElementById(
+            "cancelBtn"
+        ).style.display =
+            "none";
+
+
+        showMessage(
+            "Trainer updated successfully!",
+            "green"
+        );
+
+    }
+
+
+
+    /* =================================================
+       ADD TRAINER
+    ================================================= */
+
+    else {
+
+
+        const newTrainer = {
+
+            id:
+                Date.now(),
+
+            name:
+                name,
+
+            email:
+                email,
+
+            phone:
+                phone,
+
+            age:
+                age,
+
+            gender:
+                gender,
+
+            specialization:
+                specialization,
+
+            joiningDate:
+                joiningDate,
+
+            salary:
+                salary,
+
+            status:
+                status
+
+        };
+
+
+        trainers.push(
+            newTrainer
+        );
+
+
+        showMessage(
+            "Trainer added successfully!",
+            "green"
+        );
+
+    }
+
+
+
+    /* SAVE */
+
+    localStorage.setItem(
+        "trainers",
+        JSON.stringify(
+            trainers
+        )
+    );
+
+
+    clearForm();
+
+    displayTrainers();
+
+}
+
+
+
+/* =====================================================
+   DISPLAY TRAINERS
+===================================================== */
+
+function displayTrainers(
+    searchTerm = ""
+) {
+
+
+    const table =
+        document.getElementById(
+            "trainerTable"
+        );
+
+
+    table.innerHTML = "";
+
+
+    const search =
+        searchTerm
+            .toLowerCase()
+            .trim();
+
+
+    const filtered =
+        trainers.filter(
+            function(trainer) {
+
+
+                return (
+
+                    trainer.name
+                        .toLowerCase()
+                        .includes(search)
+
+                    ||
+
+                    trainer.phone
+                        .toLowerCase()
+                        .includes(search)
+
+                    ||
+
+                    trainer.specialization
+                        .toLowerCase()
+                        .includes(search)
+
+                );
+
+            }
+        );
+
+
+
+    if (filtered.length === 0) {
+
+        table.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="7"
+                    class="empty">
+
+                    No trainers found.
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+
+    filtered.forEach(
+        function(trainer) {
+
+
+            const row =
+                document.createElement(
+                    "tr"
+                );
+
+
+            const statusClass =
+                trainer.status === "Active"
+                    ? "active"
+                    : "inactive";
+
+
+            row.innerHTML = `
+
+                <td>
+                    ${trainer.name}
+                </td>
+
+                <td>
+                    ${trainer.phone}
+                </td>
+
+                <td>
+                    ${trainer.specialization}
+                </td>
+
+                <td>
+                    ${trainer.joiningDate}
+                </td>
+
+                <td>
+                    ₹${Number(
+                        trainer.salary
+                    ).toLocaleString("en-IN")}
+                </td>
+
+                <td>
+
+                    <span
+                        class="status ${statusClass}">
+
+                        ${trainer.status}
+
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <button
+                        class="edit-btn"
+                        onclick="editTrainer(${trainer.id})">
+
+                        Edit
+
+                    </button>
+
+
+                    <button
+                        class="delete-btn"
+                        onclick="deleteTrainer(${trainer.id})">
+
+                        Delete
+
+                    </button>
+
+                </td>
+
+            `;
+
+
+            table.appendChild(
+                row
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   EDIT TRAINER
+===================================================== */
+
+function editTrainer(id) {
+
+
+    const trainer =
+        trainers.find(
+            function(item) {
+
+                return item.id === id;
+
+            }
+        );
+
+
+    if (!trainer) {
+        return;
+    }
+
+
+    editingId = id;
+
+
+    document.getElementById(
+        "formTitle"
+    ).textContent =
+        "Edit Trainer";
+
+
+    document.getElementById(
+        "trainerName"
+    ).value =
+        trainer.name;
+
+
+    document.getElementById(
+        "trainerEmail"
+    ).value =
+        trainer.email;
+
+
+    document.getElementById(
+        "trainerPhone"
+    ).value =
+        trainer.phone;
+
+
+    document.getElementById(
+        "trainerAge"
+    ).value =
+        trainer.age;
+
+
+    document.getElementById(
+        "trainerGender"
+    ).value =
+        trainer.gender;
+
+
+    document.getElementById(
+        "specialization"
+    ).value =
+        trainer.specialization;
+
+
+    document.getElementById(
+        "joiningDate"
+    ).value =
+        trainer.joiningDate;
+
+
+    document.getElementById(
+        "salary"
+    ).value =
+        trainer.salary;
+
+
+    document.getElementById(
+        "trainerStatus"
+    ).value =
+        trainer.status;
+
+
+    document.getElementById(
+        "saveBtn"
+    ).textContent =
+        "Update Trainer";
+
+
+    document.getElementById(
+        "cancelBtn"
+    ).style.display =
+        "inline-block";
+
+
+    document.getElementById(
+        "formTitle"
+    ).scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+
+
+/* =====================================================
+   DELETE TRAINER
+===================================================== */
+
+function deleteTrainer(id) {
+
+
+    const trainer =
+        trainers.find(
+            function(item) {
+
+                return item.id === id;
+
+            }
+        );
+
+
+    if (!trainer) {
+        return;
+    }
+
+
+    const confirmDelete =
+        confirm(
+            "Are you sure you want to delete " +
+            trainer.name +
+            "?"
+        );
+
+
+    if (!confirmDelete) {
+        return;
+    }
+
+
+    trainers =
+        trainers.filter(
+            function(item) {
+
+                return item.id !== id;
+
+            }
+        );
+
+
+    localStorage.setItem(
+        "trainers",
+        JSON.stringify(
+            trainers
+        )
+    );
+
+
+    showMessage(
+        "Trainer deleted successfully!",
+        "green"
+    );
+
+
+    displayTrainers();
+
+}
+
+
+
+/* =====================================================
+   CLEAR FORM
+===================================================== */
+
+function clearForm() {
+
+
+    document.getElementById(
+        "trainerName"
+    ).value = "";
+
+
+    document.getElementById(
+        "trainerEmail"
+    ).value = "";
+
+
+    document.getElementById(
+        "trainerPhone"
+    ).value = "";
+
+
+    document.getElementById(
+        "trainerAge"
+    ).value = "";
+
+
+    document.getElementById(
+        "trainerGender"
+    ).value = "";
+
+
+    document.getElementById(
+        "specialization"
+    ).value = "";
+
+
+    document.getElementById(
+        "joiningDate"
+    ).value = "";
+
+
+    document.getElementById(
+        "salary"
+    ).value = "";
+
+
+    document.getElementById(
+        "trainerStatus"
+    ).value = "Active";
+
+}
+
+
+
+/* =====================================================
+   CANCEL EDIT
+===================================================== */
+
+function cancelEdit() {
+
+    editingId = null;
+
+
+    clearForm();
+
+
+    document.getElementById(
+        "formTitle"
+    ).textContent =
+        "Add Trainer";
+
+
+    document.getElementById(
+        "saveBtn"
+    ).textContent =
+        "Add Trainer";
+
+
+    document.getElementById(
+        "cancelBtn"
+    ).style.display =
+        "none";
+
+}
+
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+document.getElementById(
+    "searchTrainer"
+).addEventListener(
+    "input",
+    function() {
+
+        displayTrainers(
+            this.value
+        );
+
+    }
+);
+
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+function showMessage(
+    text,
+    color
+) {
+
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+
+    message.textContent =
+        text;
+
+
+    message.style.color =
+        color;
+
+}
+
+
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+function goDashboard() {
+
+    window.location.href =
+        "admin-dashboard.html";
+
+}
+
+
+
+/* =====================================================
+   INITIAL LOAD
+===================================================== */
+
+displayTrainers();
+
+</script>
+
+
+</body>
+
+</html>

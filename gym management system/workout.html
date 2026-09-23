@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Workout Management - Revive Fitness</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            padding: 40px 20px;
+
+            background-image:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.65),
+                    rgba(0, 0, 0, 0.65)
+                ),
+                url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=80");
+
+            background-size: cover;
+
+            background-position: center;
+
+            background-attachment: fixed;
+
+        }
+
+
+        .container {
+
+            width: 850px;
+
+            max-width: 95%;
+
+            margin: auto;
+
+            background: rgba(255, 255, 255, 0.97);
+
+            padding: 35px;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 8px 30px
+                rgba(0, 0, 0, 0.5);
+
+        }
+
+
+        h1 {
+
+            text-align: center;
+
+            color: #222;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .subtitle {
+
+            text-align: center;
+
+            color: #777;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .form-group {
+
+            margin-bottom: 20px;
+
+        }
+
+
+        label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-weight: bold;
+
+            color: #333;
+
+        }
+
+
+        input,
+        select {
+
+            width: 100%;
+
+            padding: 13px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 7px;
+
+            font-size: 15px;
+
+        }
+
+
+        input:focus,
+        select:focus {
+
+            outline: none;
+
+            border-color: #222;
+
+        }
+
+
+        /* EXERCISE SECTION */
+
+        .exercise-section {
+
+            background: #f5f5f5;
+
+            padding: 20px;
+
+            border-radius: 10px;
+
+            margin-top: 25px;
+
+        }
+
+
+        .exercise-section h2 {
+
+            font-size: 20px;
+
+            margin-bottom: 15px;
+
+            color: #222;
+
+        }
+
+
+        .exercise-row {
+
+            display: grid;
+
+            grid-template-columns:
+                2fr 1fr 1fr auto;
+
+            gap: 10px;
+
+            margin-bottom: 12px;
+
+            align-items: center;
+
+        }
+
+
+        .remove-btn {
+
+            width: auto;
+
+            padding: 10px 14px;
+
+            margin: 0;
+
+            background: #555;
+
+            font-size: 14px;
+
+        }
+
+
+        .remove-btn:hover {
+
+            background: #222;
+
+        }
+
+
+        .add-btn {
+
+            width: auto;
+
+            padding: 10px 18px;
+
+            background: #555;
+
+            margin-top: 5px;
+
+        }
+
+
+        .add-btn:hover {
+
+            background: #333;
+
+        }
+
+
+        /* MAIN BUTTON */
+
+        .assign-btn {
+
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 7px;
+
+            background: #222;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            margin-top: 25px;
+
+        }
+
+
+        .assign-btn:hover {
+
+            background: #444;
+
+        }
+
+
+        #message {
+
+            text-align: center;
+
+            margin-top: 15px;
+
+            font-weight: bold;
+
+        }
+
+
+        /* RECENT WORKOUTS */
+
+        .recent-workouts {
+
+            margin-top: 40px;
+
+        }
+
+
+        .recent-workouts h2 {
+
+            text-align: center;
+
+            margin-bottom: 15px;
+
+            color: #222;
+
+        }
+
+
+        .table-container {
+
+            width: 100%;
+
+            overflow-x: auto;
+
+        }
+
+
+        table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+        }
+
+
+        th {
+
+            background: #222;
+
+            color: white;
+
+            padding: 12px;
+
+            text-align: left;
+
+        }
+
+
+        td {
+
+            padding: 12px;
+
+            border-bottom: 1px solid #ddd;
+
+        }
+
+
+        tr:hover {
+
+            background: #f5f5f5;
+
+        }
+
+
+        /* BACK BUTTON */
+
+        .back-btn {
+
+            display: block;
+
+            text-align: center;
+
+            margin-top: 25px;
+
+            color: #222;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+        }
+
+
+        .back-btn:hover {
+
+            text-decoration: underline;
+
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            .container {
+
+                padding: 25px 20px;
+
+            }
+
+
+            .exercise-row {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .remove-btn {
+
+                width: 100%;
+
+            }
+
+
+            .add-btn {
+
+                width: 100%;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <h1>
+        REVIVE FITNESS
+    </h1>
+
+
+    <p class="subtitle">
+        Workout Management
+    </p>
+
+
+    <!-- WORKOUT FORM -->
+
+    <form id="workoutForm">
+
+
+        <!-- MEMBER -->
+
+        <div class="form-group">
+
+            <label for="member">
+
+                Select Member
+
+            </label>
+
+
+            <select
+                id="member"
+                required>
+
+                <option value="">
+
+                    Select Member
+
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- WORKOUT DAY -->
+
+        <div class="form-group">
+
+            <label for="day">
+
+                Workout Day
+
+            </label>
+
+
+            <select
+                id="day"
+                required>
+
+                <option value="">
+
+                    Select Day
+
+                </option>
+
+
+                <option value="Monday">
+                    Monday
+                </option>
+
+
+                <option value="Tuesday">
+                    Tuesday
+                </option>
+
+
+                <option value="Wednesday">
+                    Wednesday
+                </option>
+
+
+                <option value="Thursday">
+                    Thursday
+                </option>
+
+
+                <option value="Friday">
+                    Friday
+                </option>
+
+
+                <option value="Saturday">
+                    Saturday
+                </option>
+
+
+                <option value="Sunday">
+                    Sunday
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- EXERCISES -->
+
+        <div class="exercise-section">
+
+
+            <h2>
+                Exercises
+            </h2>
+
+
+            <div id="exerciseContainer">
+
+
+                <!-- FIRST EXERCISE -->
+
+                <div class="exercise-row">
+
+
+                    <input
+                        type="text"
+                        class="exercise-name"
+                        placeholder="Exercise name"
+                        required>
+
+
+                    <input
+                        type="number"
+                        class="exercise-sets"
+                        placeholder="Sets"
+                        min="1"
+                        required>
+
+
+                    <input
+                        type="number"
+                        class="exercise-reps"
+                        placeholder="Reps"
+                        min="1"
+                        required>
+
+
+                    <button
+                        type="button"
+                        class="remove-btn"
+                        onclick="removeExercise(this)">
+
+                        Remove
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+            <button
+                type="button"
+                class="add-btn"
+                onclick="addExercise()">
+
+                + Add Exercise
+
+            </button>
+
+
+        </div>
+
+
+        <!-- ASSIGN -->
+
+        <button
+            type="submit"
+            class="assign-btn">
+
+            Assign Workout
+
+        </button>
+
+
+        <p id="message"></p>
+
+
+    </form>
+
+
+    <!-- RECENT WORKOUTS -->
+
+    <div class="recent-workouts">
+
+
+        <h2>
+            Recent Assigned Workouts
+        </h2>
+
+
+        <div class="table-container">
+
+
+            <table>
+
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Member
+                        </th>
+
+                        <th>
+                            Day
+                        </th>
+
+                        <th>
+                            Exercises
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody
+                    id="workoutTable">
+
+                </tbody>
+
+
+            </table>
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- BACK -->
+
+    <a
+        href="admin-dashboard.html"
+        class="back-btn">
+
+        ← Back to Admin Dashboard
+
+    </a>
+
+
+</div>
+
+
+
+<script>
+
+
+    /* =========================
+       LOAD MEMBERS
+    ========================= */
+
+
+    const memberSelect =
+        document.getElementById(
+            "member"
+        );
+
+
+    let members =
+        JSON.parse(
+            localStorage.getItem(
+                "members"
+            )
+        ) || [];
+
+
+    members.forEach(function(member) {
+
+
+        const option =
+            document.createElement(
+                "option"
+            );
+
+
+        option.value =
+            member.username;
+
+
+        option.textContent =
+            member.name +
+            " (" +
+            member.username +
+            ")";
+
+
+        memberSelect.appendChild(
+            option
+        );
+
+
+    });
+
+
+
+    /* =========================
+       ADD EXERCISE
+    ========================= */
+
+
+    function addExercise() {
+
+
+        const container =
+            document.getElementById(
+                "exerciseContainer"
+            );
+
+
+        const row =
+            document.createElement(
+                "div"
+            );
+
+
+        row.className =
+            "exercise-row";
+
+
+        row.innerHTML = `
+
+            <input
+                type="text"
+                class="exercise-name"
+                placeholder="Exercise name"
+                required>
+
+
+            <input
+                type="number"
+                class="exercise-sets"
+                placeholder="Sets"
+                min="1"
+                required>
+
+
+            <input
+                type="number"
+                class="exercise-reps"
+                placeholder="Reps"
+                min="1"
+                required>
+
+
+            <button
+                type="button"
+                class="remove-btn"
+                onclick="removeExercise(this)">
+
+                Remove
+
+            </button>
+
+        `;
+
+
+        container.appendChild(row);
+
+    }
+
+
+
+    /* =========================
+       REMOVE EXERCISE
+    ========================= */
+
+
+    function removeExercise(button) {
+
+
+        const container =
+            document.getElementById(
+                "exerciseContainer"
+            );
+
+
+        const rows =
+            container.querySelectorAll(
+                ".exercise-row"
+            );
+
+
+        /*
+         * Keep at least one exercise
+         */
+
+        if (rows.length === 1) {
+
+            alert(
+                "At least one exercise is required."
+            );
+
+            return;
+
+        }
+
+
+        button.parentElement.remove();
+
+    }
+
+
+
+    /* =========================
+       DISPLAY WORKOUTS
+    ========================= */
+
+
+    function displayWorkouts() {
+
+
+        const table =
+            document.getElementById(
+                "workoutTable"
+            );
+
+
+        const workouts =
+            JSON.parse(
+                localStorage.getItem(
+                    "workouts"
+                )
+            ) || [];
+
+
+        table.innerHTML = "";
+
+
+        if (workouts.length === 0) {
+
+
+            table.innerHTML = `
+
+                <tr>
+
+                    <td
+                        colspan="3"
+                        style="text-align:center;">
+
+                        No workouts assigned yet.
+
+                    </td>
+
+                </tr>
+
+            `;
+
+
+            return;
+
+        }
+
+
+        /*
+         * Latest workouts first
+         */
+
+        const recentWorkouts =
+            workouts
+                .slice()
+                .reverse()
+                .slice(0, 10);
+
+
+        recentWorkouts.forEach(
+            function(workout) {
+
+
+                const exerciseNames =
+                    workout.exercises
+                        .map(
+                            function(exercise) {
+
+                                return exercise.exercise;
+
+                            }
+                        )
+                        .join(", ");
+
+
+                const row =
+                    document.createElement(
+                        "tr"
+                    );
+
+
+                row.innerHTML = `
+
+                    <td>
+                        ${workout.memberName}
+                    </td>
+
+                    <td>
+                        ${workout.day}
+                    </td>
+
+                    <td>
+                        ${exerciseNames}
+                    </td>
+
+                `;
+
+
+                table.appendChild(
+                    row
+                );
+
+            }
+        );
+
+    }
+
+
+
+    /* =========================
+       ASSIGN WORKOUT
+    ========================= */
+
+
+    document.getElementById(
+        "workoutForm"
+    ).addEventListener(
+        "submit",
+        function(event) {
+
+
+            event.preventDefault();
+
+
+            const username =
+                memberSelect.value;
+
+
+            const day =
+                document.getElementById(
+                    "day"
+                ).value;
+
+
+            const member =
+                members.find(
+                    function(m) {
+
+                        return m.username ===
+                            username;
+
+                    }
+                );
+
+
+            if (!member) {
+
+                alert(
+                    "Member not found."
+                );
+
+                return;
+
+            }
+
+
+            /*
+             * Get all exercises
+             */
+
+            const exerciseRows =
+                document.querySelectorAll(
+                    ".exercise-row"
+                );
+
+
+            const exercises = [];
+
+
+            exerciseRows.forEach(
+                function(row) {
+
+
+                    const name =
+                        row.querySelector(
+                            ".exercise-name"
+                        ).value.trim();
+
+
+                    const sets =
+                        row.querySelector(
+                            ".exercise-sets"
+                        ).value;
+
+
+                    const reps =
+                        row.querySelector(
+                            ".exercise-reps"
+                        ).value;
+
+
+                    if (name !== "") {
+
+
+                        exercises.push({
+
+                            exercise:
+                                name,
+
+                            sets:
+                                sets,
+
+                            reps:
+                                reps
+
+                        });
+
+
+                    }
+
+                }
+            );
+
+
+            if (exercises.length === 0) {
+
+                alert(
+                    "Please add at least one exercise."
+                );
+
+                return;
+
+            }
+
+
+
+            /* =========================
+               LOAD WORKOUTS
+            ========================= */
+
+
+            let workouts =
+                JSON.parse(
+                    localStorage.getItem(
+                        "workouts"
+                    )
+                ) || [];
+
+
+
+            /* =========================
+               CREATE WORKOUT
+            ========================= */
+
+
+            const workout = {
+
+                username:
+                    username,
+
+                memberName:
+                    member.name,
+
+                day:
+                    day,
+
+                exercises:
+                    exercises
+
+            };
+
+
+
+            /* =========================
+               SAVE
+            ========================= */
+
+
+            workouts.push(
+                workout
+            );
+
+
+            localStorage.setItem(
+
+                "workouts",
+
+                JSON.stringify(
+                    workouts
+                )
+
+            );
+
+
+
+            /* =========================
+               SUCCESS
+            ========================= */
+
+
+            document.getElementById(
+                "message"
+            ).textContent =
+                "Workout assigned successfully!";
+
+
+            document.getElementById(
+                "message"
+            ).style.color =
+                "green";
+
+
+            alert(
+                "Workout assigned to " +
+                member.name
+            );
+
+
+
+            /* =========================
+               RESET
+            ========================= */
+
+
+            document.getElementById(
+                "workoutForm"
+            ).reset();
+
+
+            /*
+             * Restore one exercise row
+             */
+
+            document.getElementById(
+                "exerciseContainer"
+            ).innerHTML = `
+
+                <div class="exercise-row">
+
+                    <input
+                        type="text"
+                        class="exercise-name"
+                        placeholder="Exercise name"
+                        required>
+
+
+                    <input
+                        type="number"
+                        class="exercise-sets"
+                        placeholder="Sets"
+                        min="1"
+                        required>
+
+
+                    <input
+                        type="number"
+                        class="exercise-reps"
+                        placeholder="Reps"
+                        min="1"
+                        required>
+
+
+                    <button
+                        type="button"
+                        class="remove-btn"
+                        onclick="removeExercise(this)">
+
+                        Remove
+
+                    </button>
+
+                </div>
+
+            `;
+
+
+            displayWorkouts();
+
+        }
+    );
+
+
+
+    /* =========================
+       INITIAL LOAD
+    ========================= */
+
+
+    displayWorkouts();
+
+
+</script>
+
+
+</body>
+
+</html>

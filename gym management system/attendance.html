@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Attendance - Revive Fitness</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 30px;
+            background: #f4f4f4;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-top: 18px;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        select,
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .mark-btn {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background: #222;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .mark-btn:hover {
+            background: #444;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 30px;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background: #222;
+            color: white;
+        }
+
+        .present {
+            color: green;
+            font-weight: bold;
+        }
+
+        .absent {
+            color: red;
+            font-weight: bold;
+        }
+
+        .delete-btn {
+            background: red;
+            color: white;
+            border: none;
+            padding: 7px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .delete-btn:hover {
+            background: darkred;
+        }
+
+        .dashboard-btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 11px 20px;
+            background: #222;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .dashboard-btn:hover {
+            background: #444;
+        }
+
+        @media (max-width: 700px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 13px;
+            }
+
+            th,
+            td {
+                padding: 8px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+    <h1>Attendance Management</h1>
+
+    <p class="subtitle">
+        Revive Fitness - Admin
+    </p>
+
+
+    <!-- SELECT MEMBER -->
+
+    <label>
+        Select Member
+    </label>
+
+    <select id="member">
+
+        <option value="">
+            -- Select Member --
+        </option>
+
+    </select>
+
+
+    <!-- DATE -->
+
+    <label>
+        Select Date
+    </label>
+
+    <input
+        type="date"
+        id="date"
+    >
+
+
+    <!-- STATUS -->
+
+    <label>
+        Attendance Status
+    </label>
+
+    <select id="status">
+
+        <option value="">
+            -- Select Status --
+        </option>
+
+        <option value="Present">
+            Present
+        </option>
+
+        <option value="Absent">
+            Absent
+        </option>
+
+    </select>
+
+
+    <button
+        class="mark-btn"
+        onclick="markAttendance()">
+
+        Mark Attendance
+
+    </button>
+
+
+    <h2>
+        Attendance Records
+    </h2>
+
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>
+                    Member
+                </th>
+
+                <th>
+                    Date
+                </th>
+
+                <th>
+                    Status
+                </th>
+
+                <th>
+                    Action
+                </th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="attendanceTable">
+
+        </tbody>
+
+    </table>
+
+
+    <!-- DASHBOARD -->
+
+    <a
+        href="admin-dashboard.html"
+        class="dashboard-btn">
+
+        ← Back to Dashboard
+
+    </a>
+
+
+</div>
+
+
+
+<script>
+
+
+/* =====================================
+   LOAD MEMBERS
+===================================== */
+
+let members =
+    JSON.parse(
+        localStorage.getItem("members")
+    ) || [];
+
+
+/* =====================================
+   LOAD ATTENDANCE
+===================================== */
+
+let attendance =
+    JSON.parse(
+        localStorage.getItem("attendance")
+    ) || [];
+
+
+/* =====================================
+   LOAD MEMBER DROPDOWN
+===================================== */
+
+function loadMembers() {
+
+    const memberSelect =
+        document.getElementById("member");
+
+    memberSelect.innerHTML = `
+
+        <option value="">
+            -- Select Member --
+        </option>
+
+    `;
+
+
+    members.forEach(function(member) {
+
+        const option =
+            document.createElement("option");
+
+        option.value =
+            member.name;
+
+        option.textContent =
+            member.name;
+
+        memberSelect.appendChild(option);
+
+    });
+
+}
+
+
+loadMembers();
+
+
+
+/* =====================================
+   MARK ATTENDANCE
+===================================== */
+
+function markAttendance() {
+
+    const member =
+        document.getElementById("member").value;
+
+    const date =
+        document.getElementById("date").value;
+
+    const status =
+        document.getElementById("status").value;
+
+
+    if (
+        member === "" ||
+        date === "" ||
+        status === ""
+    ) {
+
+        alert(
+            "Please fill all fields."
+        );
+
+        return;
+
+    }
+
+
+    /* Check duplicate */
+
+    const alreadyExists =
+        attendance.some(function(record) {
+
+            return (
+                record.member.toLowerCase() ===
+                member.toLowerCase() &&
+                record.date === date
+            );
+
+        });
+
+
+    if (alreadyExists) {
+
+        alert(
+            "Attendance for this member on this date already exists."
+        );
+
+        return;
+
+    }
+
+
+    /* Create record */
+
+    const record = {
+
+        member: member,
+
+        date: date,
+
+        status: status
+
+    };
+
+
+    attendance.push(record);
+
+
+    localStorage.setItem(
+        "attendance",
+        JSON.stringify(attendance)
+    );
+
+
+    displayAttendance();
+
+
+    document.getElementById(
+        "member"
+    ).value = "";
+
+    document.getElementById(
+        "date"
+    ).value = "";
+
+    document.getElementById(
+        "status"
+    ).value = "";
+
+
+    alert(
+        "Attendance marked successfully!"
+    );
+
+}
+
+
+
+/* =====================================
+   DISPLAY ATTENDANCE
+===================================== */
+
+function displayAttendance() {
+
+    const table =
+        document.getElementById(
+            "attendanceTable"
+        );
+
+
+    table.innerHTML = "";
+
+
+    if (attendance.length === 0) {
+
+        table.innerHTML = `
+
+            <tr>
+
+                <td colspan="4">
+
+                    No attendance records found.
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    attendance.forEach(
+        function(record, index) {
+
+            const row =
+                table.insertRow();
+
+
+            row.insertCell(0).textContent =
+                record.member;
+
+
+            row.insertCell(1).textContent =
+                record.date;
+
+
+            const statusCell =
+                row.insertCell(2);
+
+
+            statusCell.textContent =
+                record.status;
+
+
+            if (
+                record.status === "Present"
+            ) {
+
+                statusCell.className =
+                    "present";
+
+            }
+
+            else {
+
+                statusCell.className =
+                    "absent";
+
+            }
+
+
+            /* DELETE BUTTON */
+
+            const actionCell =
+                row.insertCell(3);
+
+
+            const deleteButton =
+                document.createElement(
+                    "button"
+                );
+
+
+            deleteButton.textContent =
+                "Delete";
+
+
+            deleteButton.className =
+                "delete-btn";
+
+
+            deleteButton.onclick =
+                function() {
+
+                    deleteAttendance(index);
+
+                };
+
+
+            actionCell.appendChild(
+                deleteButton
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =====================================
+   DELETE ATTENDANCE
+===================================== */
+
+function deleteAttendance(index) {
+
+    const confirmDelete =
+        confirm(
+            "Are you sure you want to delete this attendance record?"
+        );
+
+
+    if (!confirmDelete) {
+        return;
+    }
+
+
+    attendance.splice(
+        index,
+        1
+    );
+
+
+    localStorage.setItem(
+        "attendance",
+        JSON.stringify(attendance)
+    );
+
+
+    displayAttendance();
+
+}
+
+
+displayAttendance();
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Membership Management - Revive Fitness</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            padding: 40px 20px;
+
+            background-image:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.65),
+                    rgba(0, 0, 0, 0.65)
+                ),
+                url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=80");
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .container {
+            width: 1100px;
+            max-width: 95%;
+            margin: auto;
+
+            background: rgba(255, 255, 255, 0.96);
+
+            padding: 30px;
+
+            border-radius: 15px;
+
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            text-align: center;
+            color: #222;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #222;
+            color: white;
+            padding: 14px;
+            text-align: left;
+        }
+
+        td {
+            padding: 14px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background: #f5f5f5;
+        }
+
+        .active {
+            background: #d4edda;
+            color: #155724;
+
+            padding: 6px 12px;
+
+            border-radius: 15px;
+
+            font-weight: bold;
+        }
+
+        .expired {
+            background: #f8d7da;
+            color: #721c24;
+
+            padding: 6px 12px;
+
+            border-radius: 15px;
+
+            font-weight: bold;
+        }
+
+        .back-btn {
+            display: block;
+
+            width: fit-content;
+
+            margin: 25px auto 0;
+
+            padding: 10px 18px;
+
+            text-decoration: none;
+
+            color: #222;
+
+            font-weight: bold;
+
+            border: 1px solid #222;
+
+            border-radius: 6px;
+        }
+
+        .back-btn:hover {
+            background: #222;
+            color: white;
+        }
+
+        @media (max-width: 700px) {
+
+            .container {
+                padding: 20px;
+            }
+
+            th,
+            td {
+                padding: 10px;
+                font-size: 13px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="container">
+
+        <h1>
+            Revive Fitness
+        </h1>
+
+        <p class="subtitle">
+            Membership Management
+        </p>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Member
+                        </th>
+
+                        <th>
+                            Plan
+                        </th>
+
+                        <th>
+                            Start Date
+                        </th>
+
+                        <th>
+                            Expiry Date
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="membershipTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <a
+            href="admin-dashboard.html"
+            class="back-btn">
+
+            ← Back to Admin Dashboard
+
+        </a>
+
+    </div>
+
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                const table =
+                    document.getElementById(
+                        "membershipTable"
+                    );
+
+
+                const members =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "members"
+                        )
+                    ) || [];
+
+
+                if (members.length === 0) {
+
+                    table.innerHTML = `
+                        <tr>
+                            <td
+                                colspan="5"
+                                style="text-align:center;">
+                                No members found.
+                            </td>
+                        </tr>
+                    `;
+
+                    return;
+
+                }
+
+
+                members.forEach(
+                    function (member) {
+
+                        const today =
+                            new Date();
+
+                        const expiry =
+                            new Date(
+                                member.expiryDate
+                            );
+
+
+                        let status;
+
+                        if (expiry >= today) {
+
+                            status = "Active";
+
+                        } else {
+
+                            status = "Expired";
+
+                        }
+
+
+                        const row =
+                            document.createElement(
+                                "tr"
+                            );
+
+
+                        row.innerHTML = `
+
+                            <td>
+                                ${member.name}
+                            </td>
+
+                            <td>
+                                ${member.plan}
+                            </td>
+
+                            <td>
+                                ${member.startDate}
+                            </td>
+
+                            <td>
+                                ${member.expiryDate}
+                            </td>
+
+                            <td>
+
+                                <span class="${
+                                    status === "Active"
+                                    ? "active"
+                                    : "expired"
+                                }">
+
+                                    ${status}
+
+                                </span>
+
+                            </td>
+
+                        `;
+
+
+                        table.appendChild(row);
+
+                    }
+                );
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

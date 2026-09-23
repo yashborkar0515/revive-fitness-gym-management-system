@@ -1,0 +1,2069 @@
+/* =========================================================
+   REVIVE FITNESS
+   GYM MANAGEMENT SYSTEM
+   MASTER CSS FILE
+   ========================================================= */
+
+
+/* =========================================================
+   1. RESET & GLOBAL
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f5f5;
+    color: #222;
+}
+
+a {
+    text-decoration: none;
+}
+
+button,
+input {
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   2. DAY 1 + DAY 2
+   LOGIN PAGE / ACCOUNT SELECTION / LOGIN
+   ========================================================= */
+
+.login-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    background: #f5f5f5;
+}
+
+
+/* ---------------------------------------------------------
+   LEFT GYM IMAGE
+   --------------------------------------------------------- */
+
+.gym-section {
+    width: 55%;
+    min-height: 100vh;
+
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.60),
+            rgba(0, 0, 0, 0.78)
+        ),
+        url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1400&q=85");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+}
+
+
+/* ---------------------------------------------------------
+   LEFT CONTENT
+   --------------------------------------------------------- */
+
+.overlay {
+    text-align: center;
+    padding: 40px;
+    max-width: 700px;
+}
+
+.overlay h1 {
+    font-size: 65px;
+    font-weight: 800;
+    letter-spacing: 6px;
+    line-height: 1.05;
+    margin-bottom: 20px;
+}
+
+.overlay p {
+    font-size: 17px;
+    letter-spacing: 3px;
+    color: #ddd;
+}
+
+.gym-info {
+    margin-top: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    color: #ddd;
+    font-size: 14px;
+}
+
+
+/* ---------------------------------------------------------
+   RIGHT LOGIN AREA
+   --------------------------------------------------------- */
+
+.login-section {
+    width: 45%;
+    min-height: 100vh;
+
+    background: #f5f5f5;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 430px;
+    padding: 30px;
+}
+
+
+/* ---------------------------------------------------------
+   LOGO
+   --------------------------------------------------------- */
+
+.logo {
+    width: 65px;
+    height: 65px;
+
+    background: #222;
+    color: white;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 26px;
+    font-weight: bold;
+
+    margin-bottom: 25px;
+}
+
+
+/* ---------------------------------------------------------
+   LOGIN HEADINGS
+   --------------------------------------------------------- */
+
+.login-box h2 {
+    font-size: 32px;
+    color: #222;
+    margin-bottom: 8px;
+}
+
+.login-text {
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+
+/* =========================================================
+   3. DAY 1 ACCOUNT SELECTION
+   ========================================================= */
+
+.account-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.account-card {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 20px;
+
+    background: white;
+
+    border: 1px solid #ddd;
+    border-radius: 8px;
+
+    text-decoration: none;
+    color: #222;
+
+    transition: 0.25s ease;
+}
+
+.account-card:hover {
+    background: #222;
+    color: white;
+
+    border-color: #222;
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.account-icon {
+    width: 50px;
+    height: 50px;
+
+    flex-shrink: 0;
+
+    background: #222;
+    color: white;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 22px;
+}
+
+.account-card:hover .account-icon {
+    background: white;
+    color: #222;
+}
+
+.account-info {
+    flex: 1;
+}
+
+.account-info h3 {
+    font-size: 17px;
+    margin-bottom: 6px;
+}
+
+.account-info p {
+    color: #777;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.account-card:hover .account-info p {
+    color: #ccc;
+}
+
+.account-arrow {
+    font-size: 22px;
+    font-weight: bold;
+    color: #222;
+}
+
+.account-card:hover .account-arrow {
+    color: white;
+}
+
+
+/* =========================================================
+   4. LOGIN FORM
+   ========================================================= */
+
+.login-box form {
+    width: 100%;
+}
+
+.login-box form label {
+    display: block;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    color: #333;
+
+    margin-bottom: 7px;
+}
+
+.login-box input[type="text"],
+.login-box input[type="password"] {
+    width: 100%;
+
+    padding: 14px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 6px;
+
+    margin-bottom: 20px;
+
+    font-size: 14px;
+
+    outline: none;
+
+    background: white;
+
+    color: #222;
+}
+
+.login-box input[type="text"]:focus,
+.login-box input[type="password"]:focus {
+    border-color: #222;
+
+    box-shadow:
+        0 0 0 2px rgba(0, 0, 0, 0.05);
+}
+
+
+/* ---------------------------------------------------------
+   REMEMBER ME
+   --------------------------------------------------------- */
+
+.remember {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 25px;
+
+    font-size: 12px;
+}
+
+.remember label {
+    display: flex !important;
+
+    align-items: center;
+
+    gap: 6px;
+
+    margin: 0 !important;
+
+    font-weight: normal !important;
+}
+
+.remember input {
+    width: auto;
+    margin: 0;
+}
+
+.remember a {
+    color: #222;
+    text-decoration: none;
+}
+
+.remember a:hover {
+    text-decoration: underline;
+}
+
+
+/* ---------------------------------------------------------
+   LOGIN BUTTON
+   --------------------------------------------------------- */
+
+.login-box button {
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    background: #222;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.login-box button:hover {
+    background: #444;
+
+    transform: translateY(-2px);
+}
+
+
+/* ---------------------------------------------------------
+   FOOTER
+   --------------------------------------------------------- */
+
+.footer-text {
+    text-align: center;
+
+    color: #999;
+
+    font-size: 12px;
+
+    margin-top: 35px;
+}
+
+
+/* =========================================================
+   5. DAY 3 — ADMIN DASHBOARD
+   ========================================================= */
+
+.admin-layout {
+    min-height: 100vh;
+
+    display: flex;
+
+    background: #f5f5f5;
+}
+
+
+/* ---------------------------------------------------------
+   SIDEBAR
+   --------------------------------------------------------- */
+
+.sidebar {
+    width: 240px;
+
+    min-height: 100vh;
+
+    background: #191919;
+
+    color: white;
+
+    padding: 25px 15px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    flex-shrink: 0;
+}
+
+
+/* ---------------------------------------------------------
+   SIDEBAR LOGO
+   --------------------------------------------------------- */
+
+.sidebar-logo {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 0 10px 30px;
+
+    border-bottom: 1px solid #333;
+}
+
+.sidebar-logo-circle {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    background: white;
+    color: #222;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: bold;
+}
+
+.sidebar-logo h2 {
+    font-size: 17px;
+    letter-spacing: 2px;
+}
+
+.sidebar-logo span {
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: #aaa;
+}
+
+
+/* ---------------------------------------------------------
+   SIDEBAR NAVIGATION
+   --------------------------------------------------------- */
+
+.sidebar-nav {
+    margin-top: 25px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+.nav-link {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 13px 15px;
+
+    color: #aaa;
+
+    text-decoration: none;
+
+    border-radius: 6px;
+
+    font-size: 13px;
+
+    transition: 0.2s;
+}
+
+.nav-link span {
+    width: 20px;
+
+    text-align: center;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background: white;
+    color: #222;
+}
+
+
+/* ---------------------------------------------------------
+   LOGOUT
+   --------------------------------------------------------- */
+
+.sidebar-bottom {
+    margin-top: auto;
+}
+
+.logout-link {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 13px 15px;
+
+    color: #aaa;
+
+    text-decoration: none;
+
+    font-size: 13px;
+}
+
+.logout-link:hover {
+    color: white;
+}
+
+
+/* ---------------------------------------------------------
+   DASHBOARD MAIN
+   --------------------------------------------------------- */
+
+.dashboard-main {
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 30px 35px;
+
+    overflow-x: hidden;
+}
+
+
+/* ---------------------------------------------------------
+   TOP BAR
+   --------------------------------------------------------- */
+
+.topbar {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+}
+
+.page-label {
+    color: #888;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    font-weight: bold;
+}
+
+.topbar h1 {
+    font-size: 30px;
+
+    color: #222;
+
+    margin-top: 5px;
+}
+
+
+/* ---------------------------------------------------------
+   ADMIN PROFILE
+   --------------------------------------------------------- */
+
+.admin-profile {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.profile-avatar {
+    width: 40px;
+    height: 40px;
+
+    background: #222;
+
+    color: white;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-weight: bold;
+}
+
+.admin-profile strong {
+    display: block;
+
+    font-size: 13px;
+}
+
+.admin-profile small {
+    color: #888;
+
+    font-size: 10px;
+}
+
+
+/* ---------------------------------------------------------
+   WELCOME BANNER
+   --------------------------------------------------------- */
+
+.welcome-banner {
+    background: #222;
+
+    color: white;
+
+    border-radius: 10px;
+
+    padding: 25px 30px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+}
+
+.welcome-banner p {
+    font-size: 10px;
+
+    color: #aaa;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 8px;
+}
+
+.welcome-banner h2 {
+    font-size: 23px;
+
+    margin-bottom: 7px;
+}
+
+.welcome-banner span {
+    color: #aaa;
+
+    font-size: 12px;
+}
+
+.banner-icon {
+    font-size: 50px;
+}
+
+
+/* =========================================================
+   6. DASHBOARD STATISTICS
+   ========================================================= */
+
+.stats-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+}
+
+.stat-card {
+    background: white;
+
+    border: 1px solid #e2e2e2;
+
+    border-radius: 10px;
+
+    padding: 20px;
+
+    display: flex;
+
+    gap: 15px;
+
+    align-items: center;
+}
+
+.stat-icon {
+    width: 45px;
+    height: 45px;
+
+    flex-shrink: 0;
+
+    background: #eee;
+
+    border-radius: 8px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+}
+
+.stat-card p {
+    color: #888;
+
+    font-size: 11px;
+
+    margin-bottom: 5px;
+}
+
+.stat-card h3 {
+    font-size: 23px;
+
+    color: #222;
+
+    margin-bottom: 5px;
+}
+
+.positive {
+    font-size: 10px;
+
+    color: #555;
+}
+
+
+/* =========================================================
+   7. DASHBOARD LOWER CARDS
+   ========================================================= */
+
+.dashboard-grid {
+    display: grid;
+
+    grid-template-columns: 1.5fr 1fr;
+
+    gap: 20px;
+}
+
+.dashboard-card {
+    background: white;
+
+    border: 1px solid #e2e2e2;
+
+    border-radius: 10px;
+
+    padding: 22px;
+}
+
+
+/* ---------------------------------------------------------
+   CARD HEADER
+   --------------------------------------------------------- */
+
+.card-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+.card-label {
+    font-size: 9px;
+
+    color: #999;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 5px;
+}
+
+.card-header h2 {
+    font-size: 19px;
+
+    color: #222;
+}
+
+.card-header a {
+    font-size: 11px;
+
+    color: #222;
+
+    text-decoration: none;
+}
+
+.card-header a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   8. RECENT MEMBERS
+   ========================================================= */
+
+.member-row {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 14px 0;
+
+    border-bottom: 1px solid #eee;
+}
+
+.member-row:last-child {
+    border-bottom: none;
+}
+
+.member-avatar {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #222;
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 11px;
+
+    font-weight: bold;
+}
+
+.member-details {
+    flex: 1;
+}
+
+.member-details strong {
+    display: block;
+
+    font-size: 12px;
+
+    color: #222;
+
+    margin-bottom: 4px;
+}
+
+.member-details span {
+    font-size: 10px;
+
+    color: #999;
+}
+
+
+/* ---------------------------------------------------------
+   STATUS
+   --------------------------------------------------------- */
+
+.status {
+    font-size: 9px;
+
+    padding: 5px 8px;
+
+    border-radius: 20px;
+
+    background: #eee;
+
+    color: #555;
+}
+
+.status.pending {
+    background: #ddd;
+}
+
+
+/* =========================================================
+   9. QUICK ACTIONS
+   ========================================================= */
+
+.quick-actions {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+}
+
+.quick-actions a {
+    display: flex;
+
+    flex-direction
+}
+/* =========================================================
+   DAY 4 — MEMBER DASHBOARD
+   ========================================================= */
+
+.member-layout {
+    min-height: 100vh;
+    display: flex;
+    background: #f5f5f5;
+}
+
+
+/* SIDEBAR */
+
+.member-sidebar {
+    width: 240px;
+    min-height: 100vh;
+
+    background: #191919;
+    color: white;
+
+    padding: 25px 15px;
+
+    display: flex;
+    flex-direction: column;
+
+    flex-shrink: 0;
+}
+
+
+/* BRAND */
+
+.member-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 0 10px 30px;
+
+    border-bottom: 1px solid #333;
+}
+
+.member-brand-circle {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    background: white;
+    color: #222;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: bold;
+}
+
+.member-brand h2 {
+    font-size: 17px;
+    letter-spacing: 2px;
+}
+
+.member-brand span {
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: #aaa;
+}
+
+
+/* NAV */
+
+.member-nav {
+    margin-top: 25px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.member-nav a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 13px 15px;
+
+    color: #aaa;
+
+    border-radius: 6px;
+
+    font-size: 13px;
+
+    transition: 0.2s;
+}
+
+.member-nav a span {
+    width: 20px;
+    text-align: center;
+}
+
+.member-nav a:hover,
+.member-nav a.active {
+    background: white;
+    color: #222;
+}
+
+
+/* LOGOUT */
+
+.member-sidebar-bottom {
+    margin-top: auto;
+}
+
+.member-sidebar-bottom a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 13px 15px;
+
+    color: #aaa;
+
+    font-size: 13px;
+}
+
+.member-sidebar-bottom a:hover {
+    color: white;
+}
+
+
+/* MAIN */
+
+.member-main {
+    flex: 1;
+    min-width: 0;
+
+    padding: 30px 35px;
+
+    overflow-x: hidden;
+}
+
+
+/* TOPBAR */
+
+.member-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+}
+
+.member-label {
+    color: #888;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    font-weight: bold;
+}
+
+.member-topbar h1 {
+    font-size: 30px;
+
+    color: #222;
+
+    margin-top: 5px;
+}
+
+
+/* PROFILE */
+
+.member-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.member-profile-avatar {
+    width: 42px;
+    height: 42px;
+
+    background: #222;
+    color: white;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.member-profile strong {
+    display: block;
+    font-size: 13px;
+}
+
+.member-profile small {
+    color: #888;
+    font-size: 10px;
+}
+
+
+/* WELCOME */
+
+.member-welcome {
+    background: #222;
+
+    color: white;
+
+    border-radius: 10px;
+
+    padding: 25px 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+}
+
+.member-welcome p {
+    color: #aaa;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 8px;
+}
+
+.member-welcome h2 {
+    font-size: 23px;
+
+    margin-bottom: 7px;
+}
+
+.member-welcome span {
+    color: #aaa;
+
+    font-size: 12px;
+}
+
+.member-welcome-icon {
+    font-size: 50px;
+}
+
+
+/* STATS */
+
+.member-stats {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+}
+
+.member-stat-card {
+    background: white;
+
+    border: 1px solid #e2e2e2;
+
+    border-radius: 10px;
+
+    padding: 20px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+}
+
+.member-stat-icon {
+    width: 45px;
+    height: 45px;
+
+    flex-shrink: 0;
+
+    background: #eee;
+
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 19px;
+}
+
+.member-stat-card p {
+    color: #888;
+
+    font-size: 11px;
+
+    margin-bottom: 5px;
+}
+
+.member-stat-card h3 {
+    font-size: 21px;
+
+    color: #222;
+
+    margin-bottom: 5px;
+}
+
+.member-stat-card span {
+    font-size: 10px;
+
+    color: #777;
+}
+
+
+/* LOWER GRID */
+
+.member-dashboard-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+}
+
+
+/* CARD */
+
+.member-card {
+    background: white;
+
+    border: 1px solid #e2e2e2;
+
+    border-radius: 10px;
+
+    padding: 22px;
+}
+
+
+/* CARD HEADER */
+
+.member-card-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    margin-bottom: 20px;
+}
+
+.member-card-header p {
+    color: #999;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 5px;
+}
+
+.member-card-header h2 {
+    font-size: 19px;
+
+    color: #222;
+}
+
+.member-card-header > span {
+    font-size: 10px;
+
+    color: #777;
+}
+
+.member-card-header a {
+    font-size: 11px;
+
+    color: #222;
+}
+
+
+/* ACTIVE */
+
+.member-active {
+    background: #222;
+
+    color: white !important;
+
+    padding: 6px 9px;
+
+    border-radius: 20px;
+
+    font-size: 9px !important;
+}
+
+
+/* MEMBERSHIP DETAILS */
+
+.membership-details {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 10px;
+
+    margin-bottom: 25px;
+}
+
+.membership-details div {
+    background: #f5f5f5;
+
+    padding: 12px;
+
+    border-radius: 6px;
+}
+
+.membership-details span {
+    display: block;
+
+    color: #999;
+
+    font-size: 9px;
+
+    margin-bottom: 6px;
+}
+
+.membership-details strong {
+    font-size: 11px;
+
+    color: #222;
+}
+
+
+/* PROGRESS */
+
+.progress-heading {
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 10px;
+
+    color: #777;
+
+    margin-bottom: 8px;
+}
+
+.progress-bar {
+    width: 100%;
+
+    height: 7px;
+
+    background: #ddd;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 58%;
+
+    height: 100%;
+
+    background: #222;
+
+    border-radius: 10px;
+}
+
+
+/* EXERCISES */
+
+.exercise {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 12px 0;
+
+    border-bottom: 1px solid #eee;
+}
+
+.exercise-number {
+    width: 35px;
+    height: 35px;
+
+    background: #222;
+
+    color: white;
+
+    border-radius: 6px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 10px;
+}
+
+.exercise strong {
+    display: block;
+
+    font-size: 12px;
+
+    margin-bottom: 4px;
+}
+
+.exercise span {
+    color: #999;
+
+    font-size: 10px;
+}
+
+
+/* WORKOUT BUTTON */
+
+.workout-button {
+    display: inline-block;
+
+    margin-top: 18px;
+
+    color: #222;
+
+    font-size: 11px;
+
+    font-weight: bold;
+}
+
+
+/* PROGRESS ITEMS */
+
+.progress-items {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+.progress-item {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 12px;
+
+    background: #f5f5f5;
+
+    border-radius: 7px;
+}
+
+.progress-item span {
+    display: block;
+
+    color: #999;
+
+    font-size: 10px;
+
+    margin-bottom: 5px;
+}
+
+.progress-item strong {
+    font-size: 14px;
+
+    color: #222;
+}
+
+.progress-item small {
+    color: #555;
+
+    font-size: 10px;
+}
+
+
+/* PAYMENTS */
+
+.payment-row {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 15px 0;
+
+    border-bottom: 1px solid #eee;
+}
+
+.payment-row strong {
+    display: block;
+
+    font-size: 12px;
+
+    color: #222;
+}
+
+.payment-row span {
+    display: block;
+
+    color: #999;
+
+    font-size: 10px;
+
+    margin-top: 4px;
+}
+
+.payment-total {
+    display: flex;
+
+    justify-content: space-between;
+
+    padding-top: 18px;
+
+    font-size: 12px;
+}
+
+.payment-total strong {
+    font-size: 16px;
+}
+
+
+/* MEMBER DASHBOARD MOBILE */
+
+@media (max-width: 1100px) {
+
+    .member-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 850px) {
+
+    .member-sidebar {
+        width: 190px;
+    }
+
+    .member-main {
+        padding: 25px;
+    }
+
+    .member-dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .member-layout {
+        flex-direction: column;
+    }
+
+    .member-sidebar {
+        width: 100%;
+        min-height: auto;
+        padding: 15px;
+    }
+
+    .member-nav {
+        flex-direction: row;
+        overflow-x: auto;
+    }
+
+    .member-nav a {
+        white-space: nowrap;
+    }
+
+    .member-sidebar-bottom {
+        display: none;
+    }
+
+    .member-main {
+        padding: 20px 15px;
+    }
+
+    .member-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .member-profile {
+        display: none;
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .member-main {
+        padding: 15px 10px;
+    }
+
+    .member-welcome {
+        padding: 20px;
+    }
+
+    .member-welcome h2 {
+        font-size: 19px;
+    }
+
+    .member-welcome-icon {
+        display: none;
+    }
+
+    .member-card {
+        padding: 17px;
+    }
+
+    .membership-details {
+        grid-template-columns: 1fr;
+    }
+
+}
+/* =========================================================
+   FINAL MEMBER LOGIN CSS
+   ========================================================= */
+
+.member-login-page {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    background: #111;
+}
+
+
+/* LEFT IMAGE */
+
+.member-login-image {
+    width: 55%;
+    min-height: 100vh;
+
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.55),
+            rgba(0, 0, 0, 0.80)
+        ),
+        url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1400&q=85");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+}
+
+
+/* LEFT BRAND */
+
+.member-login-brand {
+    text-align: center;
+}
+
+.member-login-brand-circle {
+    width: 70px;
+    height: 70px;
+
+    margin: 0 auto 25px;
+
+    border-radius: 50%;
+
+    background: white;
+    color: #111;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.member-login-brand h1 {
+    font-size: 65px;
+    line-height: 1.05;
+    letter-spacing: 6px;
+    margin-bottom: 20px;
+}
+
+.member-login-brand p {
+    font-size: 14px;
+    letter-spacing: 4px;
+    color: #ddd;
+}
+
+
+/* RIGHT PANEL */
+
+.member-login-panel {
+    width: 45%;
+    min-height: 100vh;
+
+    background: #111;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px;
+
+    color: white;
+}
+
+
+/* LOGIN BOX */
+
+.member-login-box {
+    width: 100%;
+    max-width: 400px;
+}
+
+
+/* LOGO */
+
+.member-login-logo {
+    width: 60px;
+    height: 60px;
+
+    border-radius: 50%;
+
+    background: white;
+    color: #111;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 22px;
+    font-weight: bold;
+
+    margin-bottom: 25px;
+}
+
+
+/* TEXT */
+
+.member-small-title {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #888;
+    margin-bottom: 8px;
+}
+
+.member-login-box h2 {
+    color: white;
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+.member-login-description {
+    color: #999;
+    font-size: 13px;
+    margin-bottom: 35px;
+}
+
+
+/* FORM */
+
+#memberLoginForm {
+    width: 100%;
+}
+
+#memberLoginForm label {
+    display: block;
+    color: #ddd;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+
+/* INPUTS */
+
+#memberLoginForm input[type="text"],
+#memberLoginForm input[type="password"] {
+    width: 100%;
+
+    padding: 14px;
+
+    margin-bottom: 22px;
+
+    background: #1c1c1c;
+
+    color: white;
+
+    border: 1px solid #444;
+
+    border-radius: 5px;
+
+    outline: none;
+
+    font-size: 14px;
+}
+
+#memberLoginForm input:focus {
+    border-color: white;
+}
+
+#memberLoginForm input::placeholder {
+    color: #777;
+}
+
+
+/* REMEMBER + FORGOT */
+
+.member-login-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+
+    font-size: 12px;
+}
+
+.member-remember {
+    display: flex !important;
+    align-items: center;
+    gap: 7px;
+
+    color: #aaa !important;
+
+    font-weight: normal !important;
+
+    margin: 0 !important;
+}
+
+.member-remember input {
+    width: auto !important;
+    margin: 0 !important;
+}
+
+.member-login-options a {
+    color: #aaa;
+    text-decoration: none;
+}
+
+.member-login-options a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+
+/* BUTTON */
+
+#memberLoginForm button {
+    width: 100%;
+
+    padding: 15px;
+
+    background: white;
+
+    color: #111;
+
+    border: none;
+
+    border-radius: 5px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+#memberLoginForm button:hover {
+    background: #ddd;
+    transform: translateY(-2px);
+}
+
+
+/* FOOTER */
+
+.member-login-footer {
+    text-align: center;
+
+    color: #666;
+
+    font-size: 10px;
+
+    margin-top: 35px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+    .member-login-page {
+        flex-direction: column;
+    }
+
+    .member-login-image {
+        width: 100%;
+        min-height: 330px;
+    }
+
+    .member-login-panel {
+        width: 100%;
+        min-height: 60vh;
+        padding: 35px 25px;
+    }
+
+    .member-login-brand h1 {
+        font-size: 42px;
+        letter-spacing: 4px;
+    }
+}
+
+
+@media (max-width: 450px) {
+
+    .member-login-image {
+        min-height: 280px;
+    }
+
+    .member-login-panel {
+        padding: 30px 20px;
+    }
+
+    .member-login-brand h1 {
+        font-size: 34px;
+    }
+
+    .member-login-box h2 {
+        font-size: 28px;
+    }
+}
+.members-section {
+    margin-top: 30px;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.members-section h2 {
+    margin-bottom: 20px;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background: #222;
+    color: white;
+    padding: 13px;
+    text-align: left;
+}
+
+td {
+    padding: 13px;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+    background: #f5f5f5;
+}
+
+.active {
+    background: #d4edda;
+    color: #155724;
+    padding: 6px 10px;
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+.expired {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 6px 10px;
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+.no-members {
+    text-align: center;
+    padding: 25px;
+    color: #777;
+}.delete-btn {
+    padding: 8px 14px;
+
+    background: #222;
+    color: white;
+
+    border: none;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+.delete-btn:hover {
+    background: #555;
+}

@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Progress - Revive Fitness</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+
+            background-image:
+                linear-gradient(
+                    rgba(0,0,0,0.70),
+                    rgba(0,0,0,0.70)
+                ),
+                url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=80");
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+
+            color: #222;
+        }
+
+
+        /* HEADER */
+
+        header {
+            background: rgba(20,20,20,0.95);
+
+            color: white;
+
+            padding: 18px 40px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .back-btn {
+            background: white;
+            color: #222;
+
+            padding: 9px 18px;
+
+            border-radius: 6px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+        }
+
+        .back-btn:hover {
+            background: #ddd;
+        }
+
+
+        /* MAIN */
+
+        .container {
+
+            width: 1100px;
+            max-width: 94%;
+
+            margin: 40px auto;
+
+        }
+
+
+        .welcome {
+
+            color: white;
+
+            margin-bottom: 25px;
+
+        }
+
+        .welcome h1 {
+
+            font-size: 34px;
+
+            margin-bottom: 8px;
+
+        }
+
+        .welcome p {
+
+            color: #ddd;
+
+            font-size: 17px;
+
+        }
+
+
+        /* SUMMARY CARDS */
+
+        .cards {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 20px;
+
+        }
+
+        .card {
+
+            background:
+                rgba(255,255,255,0.96);
+
+            padding: 25px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0,0,0,0.30);
+
+        }
+
+        .card h3 {
+
+            color: #777;
+
+            font-size: 14px;
+
+            margin-bottom: 10px;
+
+        }
+
+        .card p {
+
+            font-size: 25px;
+
+            font-weight: bold;
+
+        }
+
+
+        /* PROGRESS SECTION */
+
+        .progress-section {
+
+            margin-top: 25px;
+
+            background:
+                rgba(255,255,255,0.96);
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0,0,0,0.30);
+
+        }
+
+        .progress-section h2 {
+
+            margin-bottom: 20px;
+
+        }
+
+
+        /* TABLE */
+
+        .table-container {
+
+            overflow-x: auto;
+
+        }
+
+        table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+        }
+
+        th,
+        td {
+
+            padding: 13px;
+
+            border: 1px solid #ddd;
+
+            text-align: center;
+
+        }
+
+        th {
+
+            background: #222;
+
+            color: white;
+
+        }
+
+
+        /* WEIGHT CHANGE */
+
+        .weight-change {
+
+            margin-top: 25px;
+
+            padding: 18px;
+
+            background: #f5f5f5;
+
+            border-radius: 8px;
+
+        }
+
+        .weight-change h3 {
+
+            margin-bottom: 8px;
+
+        }
+
+        .loss {
+
+            color: green;
+
+            font-weight: bold;
+
+        }
+
+        .gain {
+
+            color: red;
+
+            font-weight: bold;
+
+        }
+
+
+        /* NO DATA */
+
+        .no-data {
+
+            text-align: center;
+
+            padding: 25px;
+
+            color: #777;
+
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 850px) {
+
+            .cards {
+
+                grid-template-columns: 1fr 1fr;
+
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            header {
+
+                padding: 15px 20px;
+
+            }
+
+            .logo {
+
+                font-size: 20px;
+
+            }
+
+            .container {
+
+                margin-top: 25px;
+
+            }
+
+            .welcome h1 {
+
+                font-size: 27px;
+
+            }
+
+            .cards {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .progress-section {
+
+                padding: 20px;
+
+            }
+
+            th,
+            td {
+
+                font-size: 13px;
+
+                padding: 9px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="logo">
+        REVIVE FITNESS
+    </div>
+
+    <a
+        href="member-dashboard.html"
+        class="back-btn">
+
+        ← Dashboard
+
+    </a>
+
+</header>
+
+
+
+<!-- MAIN -->
+
+<main class="container">
+
+
+    <!-- WELCOME -->
+
+    <div class="welcome">
+
+        <h1>
+            My Progress 📊
+        </h1>
+
+        <p>
+            Track your fitness progress and improvements.
+        </p>
+
+    </div>
+
+
+
+    <!-- SUMMARY -->
+
+    <div class="cards">
+
+
+        <div class="card">
+
+            <h3>
+                Starting Weight
+            </h3>
+
+            <p id="startingWeight">
+                -
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                Current Weight
+            </h3>
+
+            <p id="currentWeight">
+                -
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                Current BMI
+            </h3>
+
+            <p id="currentBMI">
+                -
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                Attendance
+            </h3>
+
+            <p id="attendance">
+                0%
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- PROGRESS -->
+
+    <section class="progress-section">
+
+        <h2>
+            My Progress History
+        </h2>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Date
+                        </th>
+
+                        <th>
+                            Weight
+                        </th>
+
+                        <th>
+                            Height
+                        </th>
+
+                        <th>
+                            BMI
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="progressTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+
+        <!-- WEIGHT CHANGE -->
+
+        <div
+            class="weight-change"
+            id="weightChange">
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+
+<script>
+
+
+/* =====================================
+   GET LOGGED-IN MEMBER
+===================================== */
+
+const savedMember =
+    localStorage.getItem(
+        "loggedInMember"
+    );
+
+
+/*
+   If member is not logged in,
+   send them to member login.
+*/
+
+if (!savedMember) {
+
+    window.location.href =
+        "member-login.html";
+
+}
+
+
+/* Convert saved member into object */
+
+const member =
+    JSON.parse(savedMember);
+
+
+
+/* =====================================
+   LOAD PROGRESS
+===================================== */
+
+const progress =
+    JSON.parse(
+        localStorage.getItem("progress")
+    ) || [];
+
+
+
+/* =====================================
+   GET MEMBER NAME
+===================================== */
+
+const memberName =
+    member.name;
+
+
+
+/* =====================================
+   GET THIS MEMBER'S RECORDS
+===================================== */
+
+const myProgress =
+    progress.filter(
+        function(record) {
+
+            return (
+                record.member === memberName
+            );
+
+        }
+    );
+
+
+
+/* =====================================
+   STARTING WEIGHT
+===================================== */
+
+let startingWeight =
+    member.weight || 0;
+
+
+/*
+   If progress records exist,
+   use the first progress record
+   as starting point.
+*/
+
+if (myProgress.length > 0) {
+
+    startingWeight =
+        myProgress[0].weight;
+
+}
+
+
+document.getElementById(
+    "startingWeight"
+).textContent =
+
+    startingWeight
+        ? startingWeight + " kg"
+        : "-";
+
+
+
+/* =====================================
+   CURRENT WEIGHT
+===================================== */
+
+let currentWeight =
+    member.weight || 0;
+
+
+/*
+   Last progress record
+   is the latest weight.
+*/
+
+if (myProgress.length > 0) {
+
+    currentWeight =
+        myProgress[
+            myProgress.length - 1
+        ].weight;
+
+}
+
+
+document.getElementById(
+    "currentWeight"
+).textContent =
+
+    currentWeight
+        ? currentWeight + " kg"
+        : "-";
+
+
+
+/* =====================================
+   CURRENT BMI
+===================================== */
+
+let currentHeight =
+    member.height || 0;
+
+
+let currentBMI = 0;
+
+
+if (
+    currentWeight &&
+    currentHeight
+) {
+
+    const heightMeters =
+        Number(currentHeight) / 100;
+
+
+    currentBMI =
+        Number(currentWeight) /
+        (
+            heightMeters *
+            heightMeters
+        );
+
+}
+
+
+document.getElementById(
+    "currentBMI"
+).textContent =
+
+    currentBMI
+        ? currentBMI.toFixed(1)
+        : "-";
+
+
+
+/* =====================================
+   ATTENDANCE
+===================================== */
+
+const attendanceRecords =
+    JSON.parse(
+        localStorage.getItem("attendance")
+    ) || [];
+
+
+const myAttendance =
+    attendanceRecords.filter(
+        function(record) {
+
+            return (
+                record.member === memberName
+            );
+
+        }
+    );
+
+
+if (myAttendance.length > 0) {
+
+    const present =
+        myAttendance.filter(
+            function(record) {
+
+                return (
+                    record.status === "Present"
+                );
+
+            }
+        ).length;
+
+
+    const percentage =
+        Math.round(
+            (
+                present /
+                myAttendance.length
+            ) * 100
+        );
+
+
+    document.getElementById(
+        "attendance"
+    ).textContent =
+        percentage + "%";
+
+}
+
+
+
+/* =====================================
+   DISPLAY PROGRESS
+===================================== */
+
+const table =
+    document.getElementById(
+        "progressTable"
+    );
+
+
+if (myProgress.length === 0) {
+
+    table.innerHTML = `
+
+        <tr>
+
+            <td
+                colspan="4"
+                class="no-data">
+
+                No progress records available yet.
+
+            </td>
+
+        </tr>
+
+    `;
+
+}
+
+else {
+
+    myProgress.forEach(
+        function(record) {
+
+            const row =
+                document.createElement("tr");
+
+
+            const heightMeters =
+                Number(record.height) / 100;
+
+
+            const bmi =
+                Number(record.weight) /
+                (
+                    heightMeters *
+                    heightMeters
+                );
+
+
+            row.innerHTML = `
+
+                <td>
+                    ${record.date}
+                </td>
+
+                <td>
+                    ${record.weight} kg
+                </td>
+
+                <td>
+                    ${record.height} cm
+                </td>
+
+                <td>
+                    ${bmi.toFixed(1)}
+                </td>
+
+            `;
+
+
+            table.appendChild(row);
+
+        }
+    );
+
+}
+
+
+
+/* =====================================
+   WEIGHT CHANGE
+===================================== */
+
+const weightChange =
+    Number(currentWeight) -
+    Number(startingWeight);
+
+
+const weightChangeBox =
+    document.getElementById(
+        "weightChange"
+    );
+
+
+if (!startingWeight) {
+
+    weightChangeBox.innerHTML = `
+
+        <h3>
+            Weight Progress
+        </h3>
+
+        <p>
+            No weight progress available yet.
+        </p>
+
+    `;
+
+}
+
+else if (weightChange < 0) {
+
+    weightChangeBox.innerHTML = `
+
+        <h3>
+            Weight Progress
+        </h3>
+
+        <p class="loss">
+
+            🎉 You have lost
+            ${Math.abs(weightChange).toFixed(1)}
+            kg
+
+        </p>
+
+    `;
+
+}
+
+else if (weightChange > 0) {
+
+    weightChangeBox.innerHTML = `
+
+        <h3>
+            Weight Progress
+        </h3>
+
+        <p class="gain">
+
+            Weight increased by
+            ${weightChange.toFixed(1)}
+            kg
+
+        </p>
+
+    `;
+
+}
+
+else {
+
+    weightChangeBox.innerHTML = `
+
+        <h3>
+            Weight Progress
+        </h3>
+
+        <p>
+            Your weight has remained the same.
+        </p>
+
+    `;
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
